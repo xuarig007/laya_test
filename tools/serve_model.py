@@ -30,6 +30,7 @@ from layabench import schema  # noqa: E402
 QUESTIONS = schema.questions_for(noul_as_choice=False)
 GUIDE = schema.CATEGORY_GUIDE
 HTML_FILE = Path(__file__).resolve().parent / "tester.html"
+ONEPAGER = ROOT / "laya_onepager.pdf"
 AGENT = None
 CHECKPOINT = None
 
@@ -62,13 +63,16 @@ def normalize(answers: dict) -> dict:
 
 
 class Handler(BaseHTTPRequestHandler):
-    def _send(self, code: int, body: bytes, ctype: str) -> None:
+    def _send(self, code: int, body: bytes, ctype: str,
+              extra: dict[str, str] | None = None) -> None:
         self.send_response(code)
         self.send_header("Content-Type", ctype)
         self.send_header("Content-Length", str(len(body)))
         self.send_header("Access-Control-Allow-Origin", "*")
         self.send_header("Access-Control-Allow-Headers", "Content-Type")
         self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+        for key, value in (extra or {}).items():
+            self.send_header(key, value)
         self.end_headers()
         self.wfile.write(body)
 
@@ -89,6 +93,12 @@ class Handler(BaseHTTPRequestHandler):
             self._json(200, {"questions": QUESTIONS})
         elif self.path == "/guide":
             self._json(200, {"guide": GUIDE})
+        elif self.path in ("/onepager.pdf", "/one-pager.pdf"):
+            if not ONEPAGER.exists():
+                self._json(404, {"error": "one-pager not generated: run python tools/make_onepager.py"})
+                return
+            self._send(200, ONEPAGER.read_bytes(), "application/pdf",
+                       {"Content-Disposition": 'inline; filename="laya_onepager.pdf"'})
         elif self.path == "/health":
             self._json(200, {"ok": True, "checkpoint": CHECKPOINT})
         else:
