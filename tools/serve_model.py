@@ -31,8 +31,8 @@ QUESTIONS = schema.questions_for(noul_as_choice=False)
 GUIDE = schema.CATEGORY_GUIDE
 HTML_FILE = Path(__file__).resolve().parent / "tester.html"
 ONEPAGER = ROOT / "laya_onepager.pdf"
-AGENT = None
-CHECKPOINT = None
+MODELS: dict[str, dict] = {}  # model id -> {"agent": <Agent>, "label": <str>}
+DEFAULT_MODEL = "ft"
 
 
 def newest_checkpoint() -> str | None:
@@ -93,6 +93,9 @@ class Handler(BaseHTTPRequestHandler):
             self._json(200, {"questions": QUESTIONS})
         elif self.path == "/guide":
             self._json(200, {"guide": GUIDE})
+        elif self.path == "/models":
+            self._json(200, {"models": [{"id": k, "label": v["label"]} for k, v in MODELS.items()],
+                             "default": DEFAULT_MODEL})
         elif self.path in ("/onepager.pdf", "/one-pager.pdf"):
             if not ONEPAGER.exists():
                 self._json(404, {"error": "one-pager not generated: run python tools/make_onepager.py"})
@@ -100,7 +103,7 @@ class Handler(BaseHTTPRequestHandler):
             self._send(200, ONEPAGER.read_bytes(), "application/pdf",
                        {"Content-Disposition": 'inline; filename="laya_onepager.pdf"'})
         elif self.path == "/health":
-            self._json(200, {"ok": True, "checkpoint": CHECKPOINT})
+            self._json(200, {"ok": True, "models": list(MODELS), "default": DEFAULT_MODEL})
         else:
             self._json(404, {"error": "not found"})
 
@@ -117,10 +120,17 @@ class Handler(BaseHTTPRequestHandler):
                 return
             questions = payload.get("questions") or QUESTIONS
             t0 = time.perf_counter()
-            result = AGENT.predict(state, questions)
-            latency_ms = (time.perf_counter() - t0) * 1000.0
-            self._json(200, {"ok": True, "latency_ms": round(latency_ms, 1),
-                             "answers": normalize(result["answers"])})
+            base = MODELS["base"]["agent"].predict(state, questions)
+            t1 = time.perf_counter()
+            ft = MODELS["ft"]["agent"].predict(state, questions)
+            t2 = time.perf_counter()
+            self._json(200, {
+                "ok": True,
+                "latency_ms": {"base": round((t1 - t0) * 1000, 1),
+                               "ft": round((t2 - t1) * 1000, 1)},
+                "base": normalize(base["answers"]),
+                "ft": normalize(ft["answers"]),
+            })
         except Exception as exc:  # keep the server alive, report the error
             self._json(500, {"error": f"{type(exc).__name__}: {exc}"})
 
@@ -129,25 +139,34 @@ class Handler(BaseHTTPRequestHandler):
 
 
 def main(argv: list[str] | None = None) -> int:
-    global AGENT, CHECKPOINT
-    p = argparse.ArgumentParser(description="Serve a fine-tuned Laya checkpoint + tester.html.")
-    p.add_argument("--checkpoint", default=None, help="checkpoint dir (default: most recent)")
+    p = argparse.ArgumentParser(description="Serve the base and fine-tuned Laya models + tester.html.")
+    p.add_argument("--checkpoint", default=None, help="fine-tuned checkpoint dir (default: most recent)")
+    p.add_argument("--base-model", default="convaiinnovations/laya", help="base repo")
+    p.add_argument("--base-subfolder", default="multilingual", help="base subfolder: english | multilingual")
     p.add_argument("--device", default="auto", choices=["auto", "cpu", "cuda"])
     p.add_argument("--port", type=int, default=8000)
     args = p.parse_args(argv)
 
     import laya
 
-    CHECKPOINT = args.checkpoint or newest_checkpoint()
-    if not CHECKPOINT:
+    checkpoint = args.checkpoint or newest_checkpoint()
+    if not checkpoint:
         print("no checkpoint found; pass --checkpoint <dir>", file=sys.stderr)
         return 2
-    print(f"loading {CHECKPOINT} (device={args.device}) ...")
-    AGENT = laya.load(CHECKPOINT, device=args.device)
-    # one warmup so the first request is fast
-    AGENT.predict("warmup", QUESTIONS)
 
-    print(f"serving on http://127.0.0.1:{args.port}  (open it in a browser)")
+    print(f"loading base       {args.base_model}/{args.base_subfolder} (device={args.device}) ...")
+    base = laya.load(args.base_model, subfolder=args.base_subfolder, device=args.device)
+    MODELS["base"] = {"agent": base, "label": f"Sans fine-tuning ({args.base_subfolder})"}
+
+    print(f"loading fine-tuned {checkpoint} (device={args.device}) ...")
+    ft = laya.load(checkpoint, device=args.device)
+    MODELS["ft"] = {"agent": ft, "label": f"Avec fine-tuning ({Path(checkpoint).name})"}
+
+    # warmups so the first request is fast
+    for entry in MODELS.values():
+        entry["agent"].predict("warmup", QUESTIONS)
+
+    print(f"serving on http://127.0.0.1:{args.port}  (models: {list(MODELS)})")
     ThreadingHTTPServer(("127.0.0.1", args.port), Handler).serve_forever()
     return 0
 

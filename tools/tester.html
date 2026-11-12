@@ -36,11 +36,21 @@
                    padding:10px 18px; }
   button.primary:disabled { opacity:.6; cursor:progress; }
   .muted { color:#6b7684; font-size:13px; }
-  .results { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .results { display:grid; grid-template-columns:1fr 1fr; gap:10px 12px; align-items:start; }
+  .colhead { font-weight:700; font-size:12.5px; color:#5b6470; padding:2px 4px; }
+  .colhead.ft { color:#1f4e79; }
+  .qhead { grid-column:1 / -1; font-weight:700; font-size:13px; color:var(--navy);
+           margin-top:6px; border-bottom:1px solid var(--line); padding-bottom:3px; }
+  .badge { font-size:10.5px; font-weight:700; border-radius:20px; padding:1px 8px; margin-left:6px; }
+  .badge.diff { background:#fdeceb; color:#b3261e; }
+  .badge.same { background:#eef3f8; color:#7a8a99; }
+  .rcard.ft { border-left:3px solid #2f6fb0; }
+  .rcard.ft.diff { border-left-color:#e0902a; }
   .rcard { background:#fff; border:1px solid var(--line); border-radius:10px; padding:12px;
            box-shadow:0 1px 2px rgba(20,40,70,.05); }
   .rcard h3 { margin:0 0 6px; font-size:13px; color:var(--navy); }
   .val { font-size:18px; font-weight:700; }
+  /* modèles : plus de sélection, comparaison côte à côte (voir .results) */
   .bar { height:9px; background:#eef3f8; border-radius:5px; overflow:hidden; margin:5px 0; }
   .bar > span { display:block; height:100%; background:var(--blue); }
   .bar.green > span { background:var(--green); }
@@ -132,40 +142,56 @@ guideBtn.addEventListener("click", () => {
   guideBtn.textContent = hidden ? "Guide des catégories ▴" : "Guide des catégories ▾";
 });
 
-function render(a) {
-  let html = "";
-  for (const [qid, ans] of Object.entries(a)) {
-    const g = GUIDE[qid];
-    const catOf = (label) => (g ? g.categories.find(c => c.label === label) || null : null);
-    let val = "", extra = "", cat = null;
-
-    if (ans.type === "choice") {
-      cat = catOf(String(ans.label));
-      val = tipHTML(ans.label, cat);
-      if (ans.probabilities) {
-        extra = Object.entries(ans.probabilities).sort((x, y) => y[1] - x[1])
-          .map(([k, v]) =>
-            `<div class="plist">${tipHTML(k, catOf(k))} — ${pct(v)}${bar(v, k === ans.label)}</div>`)
-          .join("");
-      }
-    } else if (ans.type === "score") {
-      const i = Math.round(ans.score);
-      const lvl = ans.levels ? ans.levels[i] : "";
-      cat = catOf(String(i));
-      val = `${ans.score.toFixed(1)} <span class="muted">— ${tipHTML(lvl, cat)}</span>`;
-    } else {
-      const yes = ans.yes_prob >= 0.5;
-      cat = catOf(yes ? "oui" : "non");
-      val = `${tipHTML(yes ? "Oui" : "Non", cat)} <span class="muted">(${pct(ans.yes_prob)} de « oui »)</span>`;
-      extra = bar(ans.yes_prob, true);
+function cardFor(qid, ans) {
+  const g = GUIDE[qid];
+  const catOf = (k) => (g ? g.categories.find(c => c.label === k) || null : null);
+  let val = "", extra = "", cat = null;
+  if (ans.type === "choice") {
+    cat = catOf(String(ans.label));
+    val = tipHTML(ans.label, cat);
+    if (ans.probabilities) {
+      extra = Object.entries(ans.probabilities).sort((x, y) => y[1] - x[1])
+        .map(([k, v]) =>
+          `<div class="plist">${tipHTML(k, catOf(k))} — ${pct(v)}${bar(v, k === ans.label)}</div>`)
+        .join("");
     }
+  } else if (ans.type === "score") {
+    const i = Math.round(ans.score);
+    const lvl = ans.levels ? ans.levels[i] : "";
+    cat = catOf(String(i));
+    val = `${ans.score.toFixed(1)} <span class="muted">— ${tipHTML(lvl, cat)}</span>`;
+  } else {
+    const yes = ans.yes_prob >= 0.5;
+    cat = catOf(yes ? "oui" : "non");
+    val = `${tipHTML(yes ? "Oui" : "Non", cat)} <span class="muted">(${pct(ans.yes_prob)} de « oui »)</span>`;
+    extra = bar(ans.yes_prob, true);
+  }
+  const def = cat
+    ? `<div class="qdef"><b>${cat.domain}</b> — ${cat.definition}<br><b>Action :</b> ${cat.action}</div>`
+    : "";
+  return `<div class="val">${val}</div>${extra}
+    <div class="muted" style="font-size:12px">confiance : ${pct(ans.confidence)}</div>${def}`;
+}
 
-    const def = cat
-      ? `<div class="qdef"><b>${cat.domain}</b> — ${cat.definition}<br><b>Action :</b> ${cat.action}</div>`
-      : "";
-    html += `<div class="rcard"><h3>${TITLE[qid] || qid} <span class="muted">· ${qid}</span></h3>
-      <div class="val">${val}</div>${extra}
-      <div class="muted" style="font-size:12px">confiance : ${pct(ans.confidence)}</div>${def}</div>`;
+// does the fine-tuned answer differ from the base one?
+function isDiff(a, b) {
+  if (a.type === "choice") return String(a.label) !== String(b.label);
+  if (a.type === "score") return Math.abs(a.score - b.score) >= 0.5;
+  return (a.yes_prob >= 0.5) !== (b.yes_prob >= 0.5);
+}
+
+// two columns (one per model), four stacked cards each (1x4 vs 1x4)
+function render(resp) {
+  const { base, ft } = resp;
+  let html = `<div class="colhead">${MODEL_LABELS.base || "Sans fine-tuning"}</div>
+              <div class="colhead ft">${MODEL_LABELS.ft || "Avec fine-tuning"}</div>`;
+  for (const qid of Object.keys(ft)) {
+    const diff = isDiff(base[qid], ft[qid]);
+    const badge = diff ? '<span class="badge diff">écart</span>'
+                       : '<span class="badge same">idem</span>';
+    html += `<div class="qhead">${TITLE[qid] || qid} <span class="muted">· ${qid}</span>${badge}</div>`;
+    html += `<div class="rcard">${cardFor(qid, base[qid])}</div>`;
+    html += `<div class="rcard ft${diff ? " diff" : ""}">${cardFor(qid, ft[qid])}</div>`;
   }
   $("#out").innerHTML = `<div class="results">${html}</div>`;
 }
@@ -206,8 +232,8 @@ async function go() {
     });
     const d = await r.json();
     if (!d.ok) throw new Error(d.error || "erreur");
-    $("#lat").textContent = d.latency_ms + " ms";
-    render(d.answers);
+    $("#lat").textContent = `sans FT ${d.latency_ms.base} ms · avec FT ${d.latency_ms.ft} ms`;
+    render(d);
   } catch (e) {
     $("#out").innerHTML = `<section class="card muted">Erreur : ${e.message}</section>`;
   } finally { $("#go").disabled = false; }
@@ -218,10 +244,14 @@ $("#state").addEventListener("keydown", e => { if (e.ctrlKey && e.key === "Enter
 fetch("/guide").then(r => r.json()).then(d => { GUIDE = d.guide || {}; renderGuide(); })
   .catch(() => { $("#guideBody").textContent = "guide indisponible"; });
 
-fetch("/health").then(r => r.json()).then(d => {
-  const name = (d.checkpoint || "").split("/").slice(-1)[0] || "?";
-  $("#status").textContent = `checkpoint : ${name} · prêt`;
-}).catch(() => { $("#status").textContent = "serveur injoignable"; });
+// model labels for the two column headers
+let MODEL_LABELS = { base: "Sans fine-tuning", ft: "Avec fine-tuning" };
+fetch("/models").then(r => r.json()).then(d => {
+  const m = {};
+  (d.models || []).forEach(x => { m[x.id] = x.label; });
+  if (Object.keys(m).length) MODEL_LABELS = m;
+  $("#status").textContent = "prêt";
+}).catch(() => {});
 </script>
 </body>
 </html>
