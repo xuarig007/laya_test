@@ -237,7 +237,7 @@ laya_test/
 │   ├── serve_model.py                # petit serveur local + UI (endpoints /predict /guide /health)
 │   ├── tester.html                   # page web de test + guide des catégories (définition, domaine, action)
 │   └── routing_demo.py               # affiche les décisions du Router
-├── checkpoints/                      # tickets-ft*, tickets100-ft, t300-{softce,rlcd,*}
+├── checkpoints/                      # t300-softce conservé (le plus efficient) ; autres régénérables via tools/
 ├── laya_onepager.pdf                 # one-pager de synthèse (présentation + résultats)
 └── results/                          # rapports générés (JSON + Markdown)
 ```
