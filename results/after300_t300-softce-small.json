@@ -1,0 +1,5043 @@
+{
+  "schema": "layabench-report/1",
+  "backend": "agent",
+  "dataset": "data/test300.jsonl",
+  "n_rows": 75,
+  "noul_as_choice": false,
+  "within": [
+    0.5
+  ],
+  "questions": {
+    "department": {
+      "type": "choice",
+      "instructions": "Which team should handle this support ticket?",
+      "criteria": {
+        "billing": "double charges, invoices, payments, refunds, subscription price",
+        "technical": "bugs, crashes, outages, errors, integration or API problems",
+        "account": "login, password reset, two-factor auth, profile or access changes"
+      }
+    },
+    "urgency": {
+      "type": "score",
+      "instructions": "How urgent is this ticket?",
+      "criteria": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "churn_risk": {
+      "type": "noul",
+      "instructions": "Does the customer threaten to cancel, leave, or stop paying?"
+    },
+    "refund_requested": {
+      "type": "noul",
+      "instructions": "Is the customer explicitly asking to be refunded or paid back?"
+    }
+  },
+  "overall": {
+    "choice_accuracy": 0.72,
+    "noul_accuracy": 1.0,
+    "score_mae": 0.12639066666666668,
+    "score_within_0.5": 0.96,
+    "mean_confidence": 0.906724,
+    "ece": 0.07243422222222207,
+    "brier": 0.057264096666666674,
+    "aurc": 0.008716433055022609,
+    "selective_accuracy@50": 1.0,
+    "selective_accuracy@80": 0.9944444444444445,
+    "n_answers": 300,
+    "n_scored": 225,
+    "latency_p50_ms": 19.405383999583137,
+    "latency_p95_ms": 23.382944499826408,
+    "cost_per_decision_p50_ms": 4.851345999895784
+  },
+  "slices": {
+    "language": {
+      "de": {
+        "choice_accuracy": 0.9333333333333333,
+        "noul_accuracy": 1.0,
+        "score_mae": 0.10660000000000001,
+        "score_within_0.5": 1.0,
+        "mean_confidence": 0.9185666666666665,
+        "ece": 0.0820911111111112,
+        "brier": 0.016149409555555556,
+        "aurc": 0.0004938271604938272,
+        "selective_accuracy@50": 1.0,
+        "selective_accuracy@80": 1.0,
+        "n_answers": 60,
+        "n_scored": 45
+      },
+      "en": {
+        "choice_accuracy": 0.6666666666666666,
+        "noul_accuracy": 1.0,
+        "score_mae": 0.08445333333333334,
+        "score_within_0.5": 1.0,
+        "mean_confidence": 0.927928888888889,
+        "ece": 0.11153333333333323,
+        "brier": 0.06948436266666666,
+        "aurc": 0.007639931897825639,
+        "selective_accuracy@50": 1.0,
+        "selective_accuracy@80": 1.0,
+        "n_answers": 60,
+        "n_scored": 45
+      },
+      "es": {
+        "choice_accuracy": 0.8,
+        "noul_accuracy": 1.0,
+        "score_mae": 0.10675333333333331,
+        "score_within_0.5": 1.0,
+        "mean_confidence": 0.9054777777777777,
+        "ece": 0.09301999999999998,
+        "brier": 0.049393518,
+        "aurc": 0.006727992181764161,
+        "selective_accuracy@50": 1.0,
+        "selective_accuracy@80": 1.0,
+        "n_answers": 60,
+        "n_scored": 45
+      },
+      "fr": {
+        "choice_accuracy": 0.6666666666666666,
+        "noul_accuracy": 1.0,
+        "score_mae": 0.10962000000000002,
+        "score_within_0.5": 1.0,
+        "mean_confidence": 0.8915777777777777,
+        "ece": 0.13233333333333325,
+        "brier": 0.05172691111111111,
+        "aurc": 0.009350083344819193,
+        "selective_accuracy@50": 1.0,
+        "selective_accuracy@80": 1.0,
+        "n_answers": 60,
+        "n_scored": 45
+      },
+      "hi": {
+        "choice_accuracy": 0.5333333333333333,
+        "noul_accuracy": 1.0,
+        "score_mae": 0.22452666666666665,
+        "score_within_0.5": 0.8,
+        "mean_confidence": 0.890068888888889,
+        "ece": 0.11764222222222226,
+        "brier": 0.09956628199999999,
+        "aurc": 0.026384253400978486,
+        "selective_accuracy@50": 1.0,
+        "selective_accuracy@80": 0.9444444444444444,
+        "n_answers": 60,
+        "n_scored": 45
+      }
+    },
+    "qid": {
+      "churn_risk": {
+        "noul_accuracy": 1.0,
+        "mean_confidence": 0.9519559999999999,
+        "ece": 0.04804400000000004,
+        "brier": 0.0023584827999999993,
+        "aurc": 0.0,
+        "selective_accuracy@50": 1.0,
+        "selective_accuracy@80": 1.0,
+        "n_answers": 75,
+        "n_scored": 75
+      },
+      "department": {
+        "choice_accuracy": 0.72,
+        "mean_confidence": 0.8183733333333333,
+        "ece": 0.13890666666666668,
+        "brier": 0.1667764490666667,
+        "aurc": 0.0928801137343517,
+        "selective_accuracy@50": 0.9736842105263158,
+        "selective_accuracy@80": 0.8166666666666667,
+        "n_answers": 75,
+        "n_scored": 75
+      },
+      "refund_requested": {
+        "noul_accuracy": 1.0,
+        "mean_confidence": 0.9498426666666667,
+        "ece": 0.050157333333333415,
+        "brier": 0.002657358133333332,
+        "aurc": 0.0,
+        "selective_accuracy@50": 1.0,
+        "selective_accuracy@80": 1.0,
+        "n_answers": 75,
+        "n_scored": 75
+      },
+      "urgency": {
+        "score_mae": 0.12639066666666668,
+        "score_within_0.5": 0.96,
+        "n_answers": 75,
+        "n_scored": 0
+      }
+    },
+    "tag": {
+      "account": {
+        "choice_accuracy": 0.88,
+        "noul_accuracy": 1.0,
+        "score_mae": 0.1395,
+        "score_within_0.5": 0.96,
+        "mean_confidence": 0.9389986666666664,
+        "ece": 0.07053200000000008,
+        "brier": 0.022329872933333328,
+        "aurc": 0.0010763420955201778,
+        "selective_accuracy@50": 1.0,
+        "selective_accuracy@80": 1.0,
+        "n_answers": 100,
+        "n_scored": 75
+      },
+      "billing": {
+        "choice_accuracy": 0.32,
+        "noul_accuracy": 1.0,
+        "score_mae": 0.12219999999999999,
+        "score_within_0.5": 0.96,
+        "mean_confidence": 0.866216,
+        "ece": 0.15606400000000006,
+        "brier": 0.13494382346666667,
+        "aurc": 0.0462211756346954,
+        "selective_accuracy@50": 1.0,
+        "selective_accuracy@80": 0.8666666666666667,
+        "n_answers": 100,
+        "n_scored": 75
+      },
+      "churn": {
+        "choice_accuracy": 0.6666666666666666,
+        "noul_accuracy": 1.0,
+        "score_mae": 0.12647,
+        "score_within_0.5": 1.0,
+        "mean_confidence": 0.9029877777777776,
+        "ece": 0.09106333333333333,
+        "brier": 0.06277863655555554,
+        "aurc": 0.010669291126782766,
+        "selective_accuracy@50": 1.0,
+        "selective_accuracy@80": 1.0,
+        "n_answers": 120,
+        "n_scored": 90
+      },
+      "refund": {
+        "choice_accuracy": 0.7333333333333333,
+        "noul_accuracy": 1.0,
+        "score_mae": 0.06674666666666669,
+        "score_within_0.5": 1.0,
+        "mean_confidence": 0.8911866666666667,
+        "ece": 0.11280666666666656,
+        "brier": 0.04854634488888889,
+        "aurc": 0.0073159741264568305,
+        "selective_accuracy@50": 1.0,
+        "selective_accuracy@80": 1.0,
+        "n_answers": 120,
+        "n_scored": 90
+      },
+      "technical": {
+        "choice_accuracy": 0.96,
+        "noul_accuracy": 1.0,
+        "score_mae": 0.117472,
+        "score_within_0.5": 0.96,
+        "mean_confidence": 0.9149573333333334,
+        "ece": 0.08497866666666662,
+        "brier": 0.014518593600000003,
+        "aurc": 0.0001777777777777778,
+        "selective_accuracy@50": 1.0,
+        "selective_accuracy@80": 1.0,
+        "n_answers": 100,
+        "n_scored": 75
+      },
+      "urgent": {
+        "choice_accuracy": 0.6666666666666666,
+        "noul_accuracy": 1.0,
+        "score_mae": 0.12647,
+        "score_within_0.5": 1.0,
+        "mean_confidence": 0.9029877777777776,
+        "ece": 0.09106333333333333,
+        "brier": 0.06277863655555554,
+        "aurc": 0.010669291126782766,
+        "selective_accuracy@50": 1.0,
+        "selective_accuracy@80": 1.0,
+        "n_answers": 120,
+        "n_scored": 90
+      }
+    }
+  },
+  "rows": [
+    {
+      "id": "big-en-0225",
+      "language": "en",
+      "state": "I need to update the credit card on my account.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.817,
+          "correct": false,
+          "pred": "account",
+          "expected": "billing",
+          "language": "en",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.5967,
+          "correct": null,
+          "pred": 1.0017,
+          "expected": 1.0,
+          "language": "en",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9546,
+          "correct": true,
+          "prob": 0.0454,
+          "expected": false,
+          "language": "en",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9436,
+          "correct": true,
+          "prob": 0.0564,
+          "expected": false,
+          "language": "en",
+          "tags": [
+            "billing"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-en-0226",
+      "language": "en",
+      "state": "I need to update the credit card on my account. Please refund the charge.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.6465,
+          "correct": false,
+          "pred": "account",
+          "expected": "billing",
+          "language": "en",
+          "tags": [
+            "billing",
+            "refund"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.5878,
+          "correct": null,
+          "pred": 1.0009,
+          "expected": 1.0,
+          "language": "en",
+          "tags": [
+            "billing",
+            "refund"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9557,
+          "correct": true,
+          "prob": 0.0443,
+          "expected": false,
+          "language": "en",
+          "tags": [
+            "billing",
+            "refund"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9447,
+          "correct": true,
+          "prob": 0.9447,
+          "expected": true,
+          "language": "en",
+          "tags": [
+            "billing",
+            "refund"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-en-0227",
+      "language": "en",
+      "state": "I need to update the credit card on my account. Otherwise I will cancel my subscription. This is blocking our whole team and needs a fix today.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.8763,
+          "correct": false,
+          "pred": "account",
+          "expected": "billing",
+          "language": "en",
+          "tags": [
+            "billing",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.721,
+          "correct": null,
+          "pred": 1.8989,
+          "expected": 2.0,
+          "language": "en",
+          "tags": [
+            "billing",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9565,
+          "correct": true,
+          "prob": 0.9565,
+          "expected": true,
+          "language": "en",
+          "tags": [
+            "billing",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9119,
+          "correct": true,
+          "prob": 0.0881,
+          "expected": false,
+          "language": "en",
+          "tags": [
+            "billing",
+            "churn",
+            "urgent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-en-0228",
+      "language": "en",
+      "state": "I need to update the credit card on my account. No rush, whenever you get a chance.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.694,
+          "correct": false,
+          "pred": "account",
+          "expected": "billing",
+          "language": "en",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6468,
+          "correct": null,
+          "pred": 0.1434,
+          "expected": 0.0,
+          "language": "en",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9543,
+          "correct": true,
+          "prob": 0.0457,
+          "expected": false,
+          "language": "en",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9381,
+          "correct": true,
+          "prob": 0.0619,
+          "expected": false,
+          "language": "en",
+          "tags": [
+            "billing"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-en-0229",
+      "language": "en",
+      "state": "I need to update the credit card on my account. Please refund the charge. Otherwise I will cancel my subscription. This is blocking our whole team and needs a fix today.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.8187,
+          "correct": false,
+          "pred": "account",
+          "expected": "billing",
+          "language": "en",
+          "tags": [
+            "billing",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6977,
+          "correct": null,
+          "pred": 1.8871,
+          "expected": 2.0,
+          "language": "en",
+          "tags": [
+            "billing",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9588,
+          "correct": true,
+          "prob": 0.9588,
+          "expected": true,
+          "language": "en",
+          "tags": [
+            "billing",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9504,
+          "correct": true,
+          "prob": 0.9504,
+          "expected": true,
+          "language": "en",
+          "tags": [
+            "billing",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-en-0230",
+      "language": "en",
+      "state": "Exporting a report fails with an error.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.8925,
+          "correct": true,
+          "pred": "technical",
+          "expected": "technical",
+          "language": "en",
+          "tags": [
+            "technical"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6324,
+          "correct": null,
+          "pred": 0.9962,
+          "expected": 1.0,
+          "language": "en",
+          "tags": [
+            "technical"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9479,
+          "correct": true,
+          "prob": 0.0521,
+          "expected": false,
+          "language": "en",
+          "tags": [
+            "technical"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9553,
+          "correct": true,
+          "prob": 0.0447,
+          "expected": false,
+          "language": "en",
+          "tags": [
+            "technical"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-en-0231",
+      "language": "en",
+      "state": "Exporting a report fails with an error. Please refund the charge.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.8948,
+          "correct": true,
+          "pred": "technical",
+          "expected": "technical",
+          "language": "en",
+          "tags": [
+            "technical",
+            "refund"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6325,
+          "correct": null,
+          "pred": 0.9992,
+          "expected": 1.0,
+          "language": "en",
+          "tags": [
+            "technical",
+            "refund"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9404,
+          "correct": true,
+          "prob": 0.0596,
+          "expected": false,
+          "language": "en",
+          "tags": [
+            "technical",
+            "refund"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9508,
+          "correct": true,
+          "prob": 0.9508,
+          "expected": true,
+          "language": "en",
+          "tags": [
+            "technical",
+            "refund"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-en-0232",
+      "language": "en",
+      "state": "Exporting a report fails with an error. Otherwise I will cancel my subscription. This is blocking our whole team and needs a fix today.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.9182,
+          "correct": true,
+          "pred": "technical",
+          "expected": "technical",
+          "language": "en",
+          "tags": [
+            "technical",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6636,
+          "correct": null,
+          "pred": 1.8659,
+          "expected": 2.0,
+          "language": "en",
+          "tags": [
+            "technical",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9586,
+          "correct": true,
+          "prob": 0.9586,
+          "expected": true,
+          "language": "en",
+          "tags": [
+            "technical",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9529,
+          "correct": true,
+          "prob": 0.0471,
+          "expected": false,
+          "language": "en",
+          "tags": [
+            "technical",
+            "churn",
+            "urgent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-en-0233",
+      "language": "en",
+      "state": "Exporting a report fails with an error. No rush, whenever you get a chance.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.9374,
+          "correct": true,
+          "pred": "technical",
+          "expected": "technical",
+          "language": "en",
+          "tags": [
+            "technical"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6627,
+          "correct": null,
+          "pred": 0.1343,
+          "expected": 0.0,
+          "language": "en",
+          "tags": [
+            "technical"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9499,
+          "correct": true,
+          "prob": 0.0501,
+          "expected": false,
+          "language": "en",
+          "tags": [
+            "technical"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9575,
+          "correct": true,
+          "prob": 0.0425,
+          "expected": false,
+          "language": "en",
+          "tags": [
+            "technical"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-en-0234",
+      "language": "en",
+      "state": "Exporting a report fails with an error. Please refund the charge. Otherwise I will cancel my subscription. This is blocking our whole team and needs a fix today.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.918,
+          "correct": true,
+          "pred": "technical",
+          "expected": "technical",
+          "language": "en",
+          "tags": [
+            "technical",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6504,
+          "correct": null,
+          "pred": 1.8577,
+          "expected": 2.0,
+          "language": "en",
+          "tags": [
+            "technical",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9597,
+          "correct": true,
+          "prob": 0.9597,
+          "expected": true,
+          "language": "en",
+          "tags": [
+            "technical",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.952,
+          "correct": true,
+          "prob": 0.952,
+          "expected": true,
+          "language": "en",
+          "tags": [
+            "technical",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-en-0235",
+      "language": "en",
+      "state": "I cannot change my username.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.9697,
+          "correct": true,
+          "pred": "account",
+          "expected": "account",
+          "language": "en",
+          "tags": [
+            "account"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.5367,
+          "correct": null,
+          "pred": 0.9557,
+          "expected": 1.0,
+          "language": "en",
+          "tags": [
+            "account"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9549,
+          "correct": true,
+          "prob": 0.0451,
+          "expected": false,
+          "language": "en",
+          "tags": [
+            "account"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9636,
+          "correct": true,
+          "prob": 0.0364,
+          "expected": false,
+          "language": "en",
+          "tags": [
+            "account"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-en-0236",
+      "language": "en",
+      "state": "I cannot change my username. Please refund the charge.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.9616,
+          "correct": true,
+          "pred": "account",
+          "expected": "account",
+          "language": "en",
+          "tags": [
+            "account",
+            "refund"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.5488,
+          "correct": null,
+          "pred": 0.9642,
+          "expected": 1.0,
+          "language": "en",
+          "tags": [
+            "account",
+            "refund"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9528,
+          "correct": true,
+          "prob": 0.0472,
+          "expected": false,
+          "language": "en",
+          "tags": [
+            "account",
+            "refund"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9465,
+          "correct": true,
+          "prob": 0.9465,
+          "expected": true,
+          "language": "en",
+          "tags": [
+            "account",
+            "refund"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-en-0237",
+      "language": "en",
+      "state": "I cannot change my username. Otherwise I will cancel my subscription. This is blocking our whole team and needs a fix today.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.9563,
+          "correct": true,
+          "pred": "account",
+          "expected": "account",
+          "language": "en",
+          "tags": [
+            "account",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6906,
+          "correct": null,
+          "pred": 1.8826,
+          "expected": 2.0,
+          "language": "en",
+          "tags": [
+            "account",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9575,
+          "correct": true,
+          "prob": 0.9575,
+          "expected": true,
+          "language": "en",
+          "tags": [
+            "account",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9554,
+          "correct": true,
+          "prob": 0.0446,
+          "expected": false,
+          "language": "en",
+          "tags": [
+            "account",
+            "churn",
+            "urgent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-en-0238",
+      "language": "en",
+      "state": "I cannot change my username. No rush, whenever you get a chance.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.9622,
+          "correct": true,
+          "pred": "account",
+          "expected": "account",
+          "language": "en",
+          "tags": [
+            "account"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6015,
+          "correct": null,
+          "pred": 0.1615,
+          "expected": 0.0,
+          "language": "en",
+          "tags": [
+            "account"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9489,
+          "correct": true,
+          "prob": 0.0511,
+          "expected": false,
+          "language": "en",
+          "tags": [
+            "account"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9596,
+          "correct": true,
+          "prob": 0.0404,
+          "expected": false,
+          "language": "en",
+          "tags": [
+            "account"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-en-0239",
+      "language": "en",
+      "state": "I cannot change my username. Please refund the charge. Otherwise I will cancel my subscription. This is blocking our whole team and needs a fix today.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.9515,
+          "correct": true,
+          "pred": "account",
+          "expected": "account",
+          "language": "en",
+          "tags": [
+            "account",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.665,
+          "correct": null,
+          "pred": 1.8675,
+          "expected": 2.0,
+          "language": "en",
+          "tags": [
+            "account",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9591,
+          "correct": true,
+          "prob": 0.9591,
+          "expected": true,
+          "language": "en",
+          "tags": [
+            "account",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9502,
+          "correct": true,
+          "prob": 0.9502,
+          "expected": true,
+          "language": "en",
+          "tags": [
+            "account",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-fr-0240",
+      "language": "fr",
+      "state": "Je souhaite mettre à jour la carte bancaire de mon compte.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.5678,
+          "correct": false,
+          "pred": "technical",
+          "expected": "billing",
+          "language": "fr",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6964,
+          "correct": null,
+          "pred": 1.0128,
+          "expected": 1.0,
+          "language": "fr",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9547,
+          "correct": true,
+          "prob": 0.0453,
+          "expected": false,
+          "language": "fr",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9553,
+          "correct": true,
+          "prob": 0.0447,
+          "expected": false,
+          "language": "fr",
+          "tags": [
+            "billing"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-fr-0241",
+      "language": "fr",
+      "state": "Je souhaite mettre à jour la carte bancaire de mon compte. Merci de me rembourser le montant.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.6545,
+          "correct": false,
+          "pred": "account",
+          "expected": "billing",
+          "language": "fr",
+          "tags": [
+            "billing",
+            "refund"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6632,
+          "correct": null,
+          "pred": 1.0094,
+          "expected": 1.0,
+          "language": "fr",
+          "tags": [
+            "billing",
+            "refund"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9579,
+          "correct": true,
+          "prob": 0.0421,
+          "expected": false,
+          "language": "fr",
+          "tags": [
+            "billing",
+            "refund"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.936,
+          "correct": true,
+          "prob": 0.936,
+          "expected": true,
+          "language": "fr",
+          "tags": [
+            "billing",
+            "refund"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-fr-0242",
+      "language": "fr",
+      "state": "Je souhaite mettre à jour la carte bancaire de mon compte. Sinon je résilie mon abonnement. Tout notre service est bloqué, il faut corriger cela aujourd'hui.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.4857,
+          "correct": false,
+          "pred": "technical",
+          "expected": "billing",
+          "language": "fr",
+          "tags": [
+            "billing",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.652,
+          "correct": null,
+          "pred": 1.8534,
+          "expected": 2.0,
+          "language": "fr",
+          "tags": [
+            "billing",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9583,
+          "correct": true,
+          "prob": 0.9583,
+          "expected": true,
+          "language": "fr",
+          "tags": [
+            "billing",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9308,
+          "correct": true,
+          "prob": 0.0692,
+          "expected": false,
+          "language": "fr",
+          "tags": [
+            "billing",
+            "churn",
+            "urgent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-fr-0243",
+      "language": "fr",
+      "state": "Je souhaite mettre à jour la carte bancaire de mon compte. Pas d'urgence, quand vous pourrez.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.8442,
+          "correct": false,
+          "pred": "technical",
+          "expected": "billing",
+          "language": "fr",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.5345,
+          "correct": null,
+          "pred": 0.1965,
+          "expected": 0.0,
+          "language": "fr",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9486,
+          "correct": true,
+          "prob": 0.0514,
+          "expected": false,
+          "language": "fr",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.947,
+          "correct": true,
+          "prob": 0.053,
+          "expected": false,
+          "language": "fr",
+          "tags": [
+            "billing"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-fr-0244",
+      "language": "fr",
+      "state": "Je souhaite mettre à jour la carte bancaire de mon compte. Merci de me rembourser le montant. Sinon je résilie mon abonnement. Tout notre service est bloqué, il faut corriger cela aujourd'hui.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.7058,
+          "correct": true,
+          "pred": "billing",
+          "expected": "billing",
+          "language": "fr",
+          "tags": [
+            "billing",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6617,
+          "correct": null,
+          "pred": 1.857,
+          "expected": 2.0,
+          "language": "fr",
+          "tags": [
+            "billing",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9634,
+          "correct": true,
+          "prob": 0.9634,
+          "expected": true,
+          "language": "fr",
+          "tags": [
+            "billing",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9341,
+          "correct": true,
+          "prob": 0.9341,
+          "expected": true,
+          "language": "fr",
+          "tags": [
+            "billing",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-fr-0245",
+      "language": "fr",
+      "state": "L'export d'un rapport échoue avec une erreur.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.8792,
+          "correct": true,
+          "pred": "technical",
+          "expected": "technical",
+          "language": "fr",
+          "tags": [
+            "technical"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6606,
+          "correct": null,
+          "pred": 0.998,
+          "expected": 1.0,
+          "language": "fr",
+          "tags": [
+            "technical"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9544,
+          "correct": true,
+          "prob": 0.0456,
+          "expected": false,
+          "language": "fr",
+          "tags": [
+            "technical"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9536,
+          "correct": true,
+          "prob": 0.0464,
+          "expected": false,
+          "language": "fr",
+          "tags": [
+            "technical"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-fr-0246",
+      "language": "fr",
+      "state": "L'export d'un rapport échoue avec une erreur. Merci de me rembourser le montant.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.6916,
+          "correct": true,
+          "pred": "technical",
+          "expected": "technical",
+          "language": "fr",
+          "tags": [
+            "technical",
+            "refund"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.7302,
+          "correct": null,
+          "pred": 1.0015,
+          "expected": 1.0,
+          "language": "fr",
+          "tags": [
+            "technical",
+            "refund"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9544,
+          "correct": true,
+          "prob": 0.0456,
+          "expected": false,
+          "language": "fr",
+          "tags": [
+            "technical",
+            "refund"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9634,
+          "correct": true,
+          "prob": 0.9634,
+          "expected": true,
+          "language": "fr",
+          "tags": [
+            "technical",
+            "refund"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-fr-0247",
+      "language": "fr",
+      "state": "L'export d'un rapport échoue avec une erreur. Sinon je résilie mon abonnement. Tout notre service est bloqué, il faut corriger cela aujourd'hui.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.9048,
+          "correct": true,
+          "pred": "technical",
+          "expected": "technical",
+          "language": "fr",
+          "tags": [
+            "technical",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6497,
+          "correct": null,
+          "pred": 1.856,
+          "expected": 2.0,
+          "language": "fr",
+          "tags": [
+            "technical",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9586,
+          "correct": true,
+          "prob": 0.9586,
+          "expected": true,
+          "language": "fr",
+          "tags": [
+            "technical",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9524,
+          "correct": true,
+          "prob": 0.0476,
+          "expected": false,
+          "language": "fr",
+          "tags": [
+            "technical",
+            "churn",
+            "urgent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-fr-0248",
+      "language": "fr",
+      "state": "L'export d'un rapport échoue avec une erreur. Pas d'urgence, quand vous pourrez.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.9034,
+          "correct": true,
+          "pred": "technical",
+          "expected": "technical",
+          "language": "fr",
+          "tags": [
+            "technical"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.7349,
+          "correct": null,
+          "pred": 0.0964,
+          "expected": 0.0,
+          "language": "fr",
+          "tags": [
+            "technical"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9525,
+          "correct": true,
+          "prob": 0.0475,
+          "expected": false,
+          "language": "fr",
+          "tags": [
+            "technical"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9487,
+          "correct": true,
+          "prob": 0.0513,
+          "expected": false,
+          "language": "fr",
+          "tags": [
+            "technical"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-fr-0249",
+      "language": "fr",
+      "state": "L'export d'un rapport échoue avec une erreur. Merci de me rembourser le montant. Sinon je résilie mon abonnement. Tout notre service est bloqué, il faut corriger cela aujourd'hui.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.7115,
+          "correct": true,
+          "pred": "technical",
+          "expected": "technical",
+          "language": "fr",
+          "tags": [
+            "technical",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6573,
+          "correct": null,
+          "pred": 1.8585,
+          "expected": 2.0,
+          "language": "fr",
+          "tags": [
+            "technical",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9625,
+          "correct": true,
+          "prob": 0.9625,
+          "expected": true,
+          "language": "fr",
+          "tags": [
+            "technical",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9554,
+          "correct": true,
+          "prob": 0.9554,
+          "expected": true,
+          "language": "fr",
+          "tags": [
+            "technical",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-fr-0250",
+      "language": "fr",
+      "state": "Je n'arrive pas à modifier mon nom d'utilisateur.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.9667,
+          "correct": true,
+          "pred": "account",
+          "expected": "account",
+          "language": "fr",
+          "tags": [
+            "account"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.2476,
+          "correct": null,
+          "pred": 0.7053,
+          "expected": 1.0,
+          "language": "fr",
+          "tags": [
+            "account"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9588,
+          "correct": true,
+          "prob": 0.0412,
+          "expected": false,
+          "language": "fr",
+          "tags": [
+            "account"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9627,
+          "correct": true,
+          "prob": 0.0373,
+          "expected": false,
+          "language": "fr",
+          "tags": [
+            "account"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-fr-0251",
+      "language": "fr",
+      "state": "Je n'arrive pas à modifier mon nom d'utilisateur. Merci de me rembourser le montant.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.9033,
+          "correct": true,
+          "pred": "account",
+          "expected": "account",
+          "language": "fr",
+          "tags": [
+            "account",
+            "refund"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6176,
+          "correct": null,
+          "pred": 0.9802,
+          "expected": 1.0,
+          "language": "fr",
+          "tags": [
+            "account",
+            "refund"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9573,
+          "correct": true,
+          "prob": 0.0427,
+          "expected": false,
+          "language": "fr",
+          "tags": [
+            "account",
+            "refund"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9536,
+          "correct": true,
+          "prob": 0.9536,
+          "expected": true,
+          "language": "fr",
+          "tags": [
+            "account",
+            "refund"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-fr-0252",
+      "language": "fr",
+      "state": "Je n'arrive pas à modifier mon nom d'utilisateur. Sinon je résilie mon abonnement. Tout notre service est bloqué, il faut corriger cela aujourd'hui.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.8905,
+          "correct": true,
+          "pred": "account",
+          "expected": "account",
+          "language": "fr",
+          "tags": [
+            "account",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6531,
+          "correct": null,
+          "pred": 1.8575,
+          "expected": 2.0,
+          "language": "fr",
+          "tags": [
+            "account",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9434,
+          "correct": true,
+          "prob": 0.9434,
+          "expected": true,
+          "language": "fr",
+          "tags": [
+            "account",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9446,
+          "correct": true,
+          "prob": 0.0554,
+          "expected": false,
+          "language": "fr",
+          "tags": [
+            "account",
+            "churn",
+            "urgent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-fr-0253",
+      "language": "fr",
+      "state": "Je n'arrive pas à modifier mon nom d'utilisateur. Pas d'urgence, quand vous pourrez.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.9535,
+          "correct": true,
+          "pred": "account",
+          "expected": "account",
+          "language": "fr",
+          "tags": [
+            "account"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6265,
+          "correct": null,
+          "pred": 0.1513,
+          "expected": 0.0,
+          "language": "fr",
+          "tags": [
+            "account"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9529,
+          "correct": true,
+          "prob": 0.0471,
+          "expected": false,
+          "language": "fr",
+          "tags": [
+            "account"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9551,
+          "correct": true,
+          "prob": 0.0449,
+          "expected": false,
+          "language": "fr",
+          "tags": [
+            "account"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-fr-0254",
+      "language": "fr",
+      "state": "Je n'arrive pas à modifier mon nom d'utilisateur. Merci de me rembourser le montant. Sinon je résilie mon abonnement. Tout notre service est bloqué, il faut corriger cela aujourd'hui.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.4858,
+          "correct": false,
+          "pred": "billing",
+          "expected": "account",
+          "language": "fr",
+          "tags": [
+            "account",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6596,
+          "correct": null,
+          "pred": 1.8577,
+          "expected": 2.0,
+          "language": "fr",
+          "tags": [
+            "account",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.955,
+          "correct": true,
+          "prob": 0.955,
+          "expected": true,
+          "language": "fr",
+          "tags": [
+            "account",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9473,
+          "correct": true,
+          "prob": 0.9473,
+          "expected": true,
+          "language": "fr",
+          "tags": [
+            "account",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-de-0255",
+      "language": "de",
+      "state": "Ich möchte die Kreditkarte in meinem Konto aktualisieren.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.5148,
+          "correct": false,
+          "pred": "account",
+          "expected": "billing",
+          "language": "de",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.5226,
+          "correct": null,
+          "pred": 1.0174,
+          "expected": 1.0,
+          "language": "de",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9576,
+          "correct": true,
+          "prob": 0.0424,
+          "expected": false,
+          "language": "de",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9451,
+          "correct": true,
+          "prob": 0.0549,
+          "expected": false,
+          "language": "de",
+          "tags": [
+            "billing"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-de-0256",
+      "language": "de",
+      "state": "Ich möchte die Kreditkarte in meinem Konto aktualisieren. Bitte erstatten Sie mir den Betrag.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.8419,
+          "correct": true,
+          "pred": "billing",
+          "expected": "billing",
+          "language": "de",
+          "tags": [
+            "billing",
+            "refund"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6145,
+          "correct": null,
+          "pred": 1.004,
+          "expected": 1.0,
+          "language": "de",
+          "tags": [
+            "billing",
+            "refund"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9534,
+          "correct": true,
+          "prob": 0.0466,
+          "expected": false,
+          "language": "de",
+          "tags": [
+            "billing",
+            "refund"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9465,
+          "correct": true,
+          "prob": 0.9465,
+          "expected": true,
+          "language": "de",
+          "tags": [
+            "billing",
+            "refund"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-de-0257",
+      "language": "de",
+      "state": "Ich möchte die Kreditkarte in meinem Konto aktualisieren. Andernfalls kündige ich mein Abonnement. Das blockiert unser ganzes Team und muss heute behoben werden.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.7392,
+          "correct": true,
+          "pred": "billing",
+          "expected": "billing",
+          "language": "de",
+          "tags": [
+            "billing",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6849,
+          "correct": null,
+          "pred": 1.873,
+          "expected": 2.0,
+          "language": "de",
+          "tags": [
+            "billing",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9491,
+          "correct": true,
+          "prob": 0.9491,
+          "expected": true,
+          "language": "de",
+          "tags": [
+            "billing",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9451,
+          "correct": true,
+          "prob": 0.0549,
+          "expected": false,
+          "language": "de",
+          "tags": [
+            "billing",
+            "churn",
+            "urgent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-de-0258",
+      "language": "de",
+      "state": "Ich möchte die Kreditkarte in meinem Konto aktualisieren. Keine Eile, wenn Sie Zeit haben.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.5409,
+          "correct": true,
+          "pred": "billing",
+          "expected": "billing",
+          "language": "de",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.403,
+          "correct": null,
+          "pred": 0.2959,
+          "expected": 0.0,
+          "language": "de",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9361,
+          "correct": true,
+          "prob": 0.0639,
+          "expected": false,
+          "language": "de",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9441,
+          "correct": true,
+          "prob": 0.0559,
+          "expected": false,
+          "language": "de",
+          "tags": [
+            "billing"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-de-0259",
+      "language": "de",
+      "state": "Ich möchte die Kreditkarte in meinem Konto aktualisieren. Bitte erstatten Sie mir den Betrag. Andernfalls kündige ich mein Abonnement. Das blockiert unser ganzes Team und muss heute behoben werden.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.8681,
+          "correct": true,
+          "pred": "billing",
+          "expected": "billing",
+          "language": "de",
+          "tags": [
+            "billing",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6622,
+          "correct": null,
+          "pred": 1.8639,
+          "expected": 2.0,
+          "language": "de",
+          "tags": [
+            "billing",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9577,
+          "correct": true,
+          "prob": 0.9577,
+          "expected": true,
+          "language": "de",
+          "tags": [
+            "billing",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9567,
+          "correct": true,
+          "prob": 0.9567,
+          "expected": true,
+          "language": "de",
+          "tags": [
+            "billing",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-de-0260",
+      "language": "de",
+      "state": "Der Export eines Berichts schlägt mit einem Fehler fehl.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.9194,
+          "correct": true,
+          "pred": "technical",
+          "expected": "technical",
+          "language": "de",
+          "tags": [
+            "technical"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.5856,
+          "correct": null,
+          "pred": 0.9929,
+          "expected": 1.0,
+          "language": "de",
+          "tags": [
+            "technical"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9546,
+          "correct": true,
+          "prob": 0.0454,
+          "expected": false,
+          "language": "de",
+          "tags": [
+            "technical"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9594,
+          "correct": true,
+          "prob": 0.0406,
+          "expected": false,
+          "language": "de",
+          "tags": [
+            "technical"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-de-0261",
+      "language": "de",
+      "state": "Der Export eines Berichts schlägt mit einem Fehler fehl. Bitte erstatten Sie mir den Betrag.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.8936,
+          "correct": true,
+          "pred": "technical",
+          "expected": "technical",
+          "language": "de",
+          "tags": [
+            "technical",
+            "refund"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6801,
+          "correct": null,
+          "pred": 1.0037,
+          "expected": 1.0,
+          "language": "de",
+          "tags": [
+            "technical",
+            "refund"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9525,
+          "correct": true,
+          "prob": 0.0475,
+          "expected": false,
+          "language": "de",
+          "tags": [
+            "technical",
+            "refund"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9538,
+          "correct": true,
+          "prob": 0.9538,
+          "expected": true,
+          "language": "de",
+          "tags": [
+            "technical",
+            "refund"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-de-0262",
+      "language": "de",
+      "state": "Der Export eines Berichts schlägt mit einem Fehler fehl. Andernfalls kündige ich mein Abonnement. Das blockiert unser ganzes Team und muss heute behoben werden.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.9269,
+          "correct": true,
+          "pred": "technical",
+          "expected": "technical",
+          "language": "de",
+          "tags": [
+            "technical",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6316,
+          "correct": null,
+          "pred": 1.8438,
+          "expected": 2.0,
+          "language": "de",
+          "tags": [
+            "technical",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9432,
+          "correct": true,
+          "prob": 0.9432,
+          "expected": true,
+          "language": "de",
+          "tags": [
+            "technical",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9581,
+          "correct": true,
+          "prob": 0.0419,
+          "expected": false,
+          "language": "de",
+          "tags": [
+            "technical",
+            "churn",
+            "urgent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-de-0263",
+      "language": "de",
+      "state": "Der Export eines Berichts schlägt mit einem Fehler fehl. Keine Eile, wenn Sie Zeit haben.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.9268,
+          "correct": true,
+          "pred": "technical",
+          "expected": "technical",
+          "language": "de",
+          "tags": [
+            "technical"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.5208,
+          "correct": null,
+          "pred": 0.2136,
+          "expected": 0.0,
+          "language": "de",
+          "tags": [
+            "technical"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9498,
+          "correct": true,
+          "prob": 0.0502,
+          "expected": false,
+          "language": "de",
+          "tags": [
+            "technical"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9549,
+          "correct": true,
+          "prob": 0.0451,
+          "expected": false,
+          "language": "de",
+          "tags": [
+            "technical"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-de-0264",
+      "language": "de",
+      "state": "Der Export eines Berichts schlägt mit einem Fehler fehl. Bitte erstatten Sie mir den Betrag. Andernfalls kündige ich mein Abonnement. Das blockiert unser ganzes Team und muss heute behoben werden.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.8263,
+          "correct": true,
+          "pred": "technical",
+          "expected": "technical",
+          "language": "de",
+          "tags": [
+            "technical",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6656,
+          "correct": null,
+          "pred": 1.8635,
+          "expected": 2.0,
+          "language": "de",
+          "tags": [
+            "technical",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9463,
+          "correct": true,
+          "prob": 0.9463,
+          "expected": true,
+          "language": "de",
+          "tags": [
+            "technical",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9543,
+          "correct": true,
+          "prob": 0.9543,
+          "expected": true,
+          "language": "de",
+          "tags": [
+            "technical",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-de-0265",
+      "language": "de",
+      "state": "Ich kann meinen Benutzernamen nicht ändern.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.9777,
+          "correct": true,
+          "pred": "account",
+          "expected": "account",
+          "language": "de",
+          "tags": [
+            "account"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.4759,
+          "correct": null,
+          "pred": 0.9036,
+          "expected": 1.0,
+          "language": "de",
+          "tags": [
+            "account"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9559,
+          "correct": true,
+          "prob": 0.0441,
+          "expected": false,
+          "language": "de",
+          "tags": [
+            "account"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9616,
+          "correct": true,
+          "prob": 0.0384,
+          "expected": false,
+          "language": "de",
+          "tags": [
+            "account"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-de-0266",
+      "language": "de",
+      "state": "Ich kann meinen Benutzernamen nicht ändern. Bitte erstatten Sie mir den Betrag.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.9601,
+          "correct": true,
+          "pred": "account",
+          "expected": "account",
+          "language": "de",
+          "tags": [
+            "account",
+            "refund"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.5884,
+          "correct": null,
+          "pred": 0.9842,
+          "expected": 1.0,
+          "language": "de",
+          "tags": [
+            "account",
+            "refund"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9513,
+          "correct": true,
+          "prob": 0.0487,
+          "expected": false,
+          "language": "de",
+          "tags": [
+            "account",
+            "refund"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9508,
+          "correct": true,
+          "prob": 0.9508,
+          "expected": true,
+          "language": "de",
+          "tags": [
+            "account",
+            "refund"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-de-0267",
+      "language": "de",
+      "state": "Ich kann meinen Benutzernamen nicht ändern. Andernfalls kündige ich mein Abonnement. Das blockiert unser ganzes Team und muss heute behoben werden.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.9484,
+          "correct": true,
+          "pred": "account",
+          "expected": "account",
+          "language": "de",
+          "tags": [
+            "account",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6713,
+          "correct": null,
+          "pred": 1.8663,
+          "expected": 2.0,
+          "language": "de",
+          "tags": [
+            "account",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9421,
+          "correct": true,
+          "prob": 0.9421,
+          "expected": true,
+          "language": "de",
+          "tags": [
+            "account",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9623,
+          "correct": true,
+          "prob": 0.0377,
+          "expected": false,
+          "language": "de",
+          "tags": [
+            "account",
+            "churn",
+            "urgent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-de-0268",
+      "language": "de",
+      "state": "Ich kann meinen Benutzernamen nicht ändern. Keine Eile, wenn Sie Zeit haben.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.9744,
+          "correct": true,
+          "pred": "account",
+          "expected": "account",
+          "language": "de",
+          "tags": [
+            "account"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6873,
+          "correct": null,
+          "pred": 0.1245,
+          "expected": 0.0,
+          "language": "de",
+          "tags": [
+            "account"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9439,
+          "correct": true,
+          "prob": 0.0561,
+          "expected": false,
+          "language": "de",
+          "tags": [
+            "account"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.958,
+          "correct": true,
+          "prob": 0.042,
+          "expected": false,
+          "language": "de",
+          "tags": [
+            "account"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-de-0269",
+      "language": "de",
+      "state": "Ich kann meinen Benutzernamen nicht ändern. Bitte erstatten Sie mir den Betrag. Andernfalls kündige ich mein Abonnement. Das blockiert unser ganzes Team und muss heute behoben werden.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.931,
+          "correct": true,
+          "pred": "account",
+          "expected": "account",
+          "language": "de",
+          "tags": [
+            "account",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6762,
+          "correct": null,
+          "pred": 1.8689,
+          "expected": 2.0,
+          "language": "de",
+          "tags": [
+            "account",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9483,
+          "correct": true,
+          "prob": 0.9483,
+          "expected": true,
+          "language": "de",
+          "tags": [
+            "account",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9535,
+          "correct": true,
+          "prob": 0.9535,
+          "expected": true,
+          "language": "de",
+          "tags": [
+            "account",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-es-0270",
+      "language": "es",
+      "state": "Necesito actualizar la tarjeta de mi cuenta.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.7608,
+          "correct": false,
+          "pred": "account",
+          "expected": "billing",
+          "language": "es",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.658,
+          "correct": null,
+          "pred": 1.0109,
+          "expected": 1.0,
+          "language": "es",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9547,
+          "correct": true,
+          "prob": 0.0453,
+          "expected": false,
+          "language": "es",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9611,
+          "correct": true,
+          "prob": 0.0389,
+          "expected": false,
+          "language": "es",
+          "tags": [
+            "billing"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-es-0271",
+      "language": "es",
+      "state": "Necesito actualizar la tarjeta de mi cuenta. Por favor, devuélvanme el importe.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.5468,
+          "correct": true,
+          "pred": "billing",
+          "expected": "billing",
+          "language": "es",
+          "tags": [
+            "billing",
+            "refund"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.5957,
+          "correct": null,
+          "pred": 1.0095,
+          "expected": 1.0,
+          "language": "es",
+          "tags": [
+            "billing",
+            "refund"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.956,
+          "correct": true,
+          "prob": 0.044,
+          "expected": false,
+          "language": "es",
+          "tags": [
+            "billing",
+            "refund"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9269,
+          "correct": true,
+          "prob": 0.9269,
+          "expected": true,
+          "language": "es",
+          "tags": [
+            "billing",
+            "refund"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-es-0272",
+      "language": "es",
+      "state": "Necesito actualizar la tarjeta de mi cuenta. De lo contrario cancelaré mi suscripción. Esto bloquea a todo nuestro equipo y hay que arreglarlo hoy.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.8401,
+          "correct": false,
+          "pred": "account",
+          "expected": "billing",
+          "language": "es",
+          "tags": [
+            "billing",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.7363,
+          "correct": null,
+          "pred": 1.9043,
+          "expected": 2.0,
+          "language": "es",
+          "tags": [
+            "billing",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.958,
+          "correct": true,
+          "prob": 0.958,
+          "expected": true,
+          "language": "es",
+          "tags": [
+            "billing",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9563,
+          "correct": true,
+          "prob": 0.0437,
+          "expected": false,
+          "language": "es",
+          "tags": [
+            "billing",
+            "churn",
+            "urgent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-es-0273",
+      "language": "es",
+      "state": "Necesito actualizar la tarjeta de mi cuenta. Sin prisa, cuando puedan.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.4779,
+          "correct": true,
+          "pred": "billing",
+          "expected": "billing",
+          "language": "es",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.2989,
+          "correct": null,
+          "pred": 0.3686,
+          "expected": 0.0,
+          "language": "es",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9545,
+          "correct": true,
+          "prob": 0.0455,
+          "expected": false,
+          "language": "es",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9597,
+          "correct": true,
+          "prob": 0.0403,
+          "expected": false,
+          "language": "es",
+          "tags": [
+            "billing"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-es-0274",
+      "language": "es",
+      "state": "Necesito actualizar la tarjeta de mi cuenta. Por favor, devuélvanme el importe. De lo contrario cancelaré mi suscripción. Esto bloquea a todo nuestro equipo y hay que arreglarlo hoy.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.7168,
+          "correct": true,
+          "pred": "billing",
+          "expected": "billing",
+          "language": "es",
+          "tags": [
+            "billing",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.761,
+          "correct": null,
+          "pred": 1.919,
+          "expected": 2.0,
+          "language": "es",
+          "tags": [
+            "billing",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9578,
+          "correct": true,
+          "prob": 0.9578,
+          "expected": true,
+          "language": "es",
+          "tags": [
+            "billing",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9511,
+          "correct": true,
+          "prob": 0.9511,
+          "expected": true,
+          "language": "es",
+          "tags": [
+            "billing",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-es-0275",
+      "language": "es",
+      "state": "Exportar un informe falla con un error.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.9308,
+          "correct": true,
+          "pred": "technical",
+          "expected": "technical",
+          "language": "es",
+          "tags": [
+            "technical"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.2888,
+          "correct": null,
+          "pred": 0.9768,
+          "expected": 1.0,
+          "language": "es",
+          "tags": [
+            "technical"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9507,
+          "correct": true,
+          "prob": 0.0493,
+          "expected": false,
+          "language": "es",
+          "tags": [
+            "technical"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9565,
+          "correct": true,
+          "prob": 0.0435,
+          "expected": false,
+          "language": "es",
+          "tags": [
+            "technical"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-es-0276",
+      "language": "es",
+      "state": "Exportar un informe falla con un error. Por favor, devuélvanme el importe.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.8653,
+          "correct": true,
+          "pred": "technical",
+          "expected": "technical",
+          "language": "es",
+          "tags": [
+            "technical",
+            "refund"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.4337,
+          "correct": null,
+          "pred": 1.0154,
+          "expected": 1.0,
+          "language": "es",
+          "tags": [
+            "technical",
+            "refund"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.955,
+          "correct": true,
+          "prob": 0.045,
+          "expected": false,
+          "language": "es",
+          "tags": [
+            "technical",
+            "refund"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.935,
+          "correct": true,
+          "prob": 0.935,
+          "expected": true,
+          "language": "es",
+          "tags": [
+            "technical",
+            "refund"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-es-0277",
+      "language": "es",
+      "state": "Exportar un informe falla con un error. De lo contrario cancelaré mi suscripción. Esto bloquea a todo nuestro equipo y hay que arreglarlo hoy.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.8865,
+          "correct": true,
+          "pred": "technical",
+          "expected": "technical",
+          "language": "es",
+          "tags": [
+            "technical",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.7098,
+          "correct": null,
+          "pred": 1.8899,
+          "expected": 2.0,
+          "language": "es",
+          "tags": [
+            "technical",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9574,
+          "correct": true,
+          "prob": 0.9574,
+          "expected": true,
+          "language": "es",
+          "tags": [
+            "technical",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9581,
+          "correct": true,
+          "prob": 0.0419,
+          "expected": false,
+          "language": "es",
+          "tags": [
+            "technical",
+            "churn",
+            "urgent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-es-0278",
+      "language": "es",
+      "state": "Exportar un informe falla con un error. Sin prisa, cuando puedan.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.9141,
+          "correct": true,
+          "pred": "technical",
+          "expected": "technical",
+          "language": "es",
+          "tags": [
+            "technical"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6289,
+          "correct": null,
+          "pred": 0.1566,
+          "expected": 0.0,
+          "language": "es",
+          "tags": [
+            "technical"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9512,
+          "correct": true,
+          "prob": 0.0488,
+          "expected": false,
+          "language": "es",
+          "tags": [
+            "technical"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9574,
+          "correct": true,
+          "prob": 0.0426,
+          "expected": false,
+          "language": "es",
+          "tags": [
+            "technical"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-es-0279",
+      "language": "es",
+      "state": "Exportar un informe falla con un error. Por favor, devuélvanme el importe. De lo contrario cancelaré mi suscripción. Esto bloquea a todo nuestro equipo y hay que arreglarlo hoy.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.4976,
+          "correct": false,
+          "pred": "billing",
+          "expected": "technical",
+          "language": "es",
+          "tags": [
+            "technical",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.7328,
+          "correct": null,
+          "pred": 1.9039,
+          "expected": 2.0,
+          "language": "es",
+          "tags": [
+            "technical",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9564,
+          "correct": true,
+          "prob": 0.9564,
+          "expected": true,
+          "language": "es",
+          "tags": [
+            "technical",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9388,
+          "correct": true,
+          "prob": 0.9388,
+          "expected": true,
+          "language": "es",
+          "tags": [
+            "technical",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-es-0280",
+      "language": "es",
+      "state": "No puedo cambiar mi nombre de usuario.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.9714,
+          "correct": true,
+          "pred": "account",
+          "expected": "account",
+          "language": "es",
+          "tags": [
+            "account"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.4716,
+          "correct": null,
+          "pred": 0.9598,
+          "expected": 1.0,
+          "language": "es",
+          "tags": [
+            "account"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9585,
+          "correct": true,
+          "prob": 0.0415,
+          "expected": false,
+          "language": "es",
+          "tags": [
+            "account"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9609,
+          "correct": true,
+          "prob": 0.0391,
+          "expected": false,
+          "language": "es",
+          "tags": [
+            "account"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-es-0281",
+      "language": "es",
+      "state": "No puedo cambiar mi nombre de usuario. Por favor, devuélvanme el importe.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.9593,
+          "correct": true,
+          "pred": "account",
+          "expected": "account",
+          "language": "es",
+          "tags": [
+            "account",
+            "refund"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6191,
+          "correct": null,
+          "pred": 1.0,
+          "expected": 1.0,
+          "language": "es",
+          "tags": [
+            "account",
+            "refund"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9554,
+          "correct": true,
+          "prob": 0.0446,
+          "expected": false,
+          "language": "es",
+          "tags": [
+            "account",
+            "refund"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9372,
+          "correct": true,
+          "prob": 0.9372,
+          "expected": true,
+          "language": "es",
+          "tags": [
+            "account",
+            "refund"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-es-0282",
+      "language": "es",
+      "state": "No puedo cambiar mi nombre de usuario. De lo contrario cancelaré mi suscripción. Esto bloquea a todo nuestro equipo y hay que arreglarlo hoy.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.9563,
+          "correct": true,
+          "pred": "account",
+          "expected": "account",
+          "language": "es",
+          "tags": [
+            "account",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.7172,
+          "correct": null,
+          "pred": 1.8964,
+          "expected": 2.0,
+          "language": "es",
+          "tags": [
+            "account",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9533,
+          "correct": true,
+          "prob": 0.9533,
+          "expected": true,
+          "language": "es",
+          "tags": [
+            "account",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9625,
+          "correct": true,
+          "prob": 0.0375,
+          "expected": false,
+          "language": "es",
+          "tags": [
+            "account",
+            "churn",
+            "urgent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-es-0283",
+      "language": "es",
+      "state": "No puedo cambiar mi nombre de usuario. Sin prisa, cuando puedan.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.9636,
+          "correct": true,
+          "pred": "account",
+          "expected": "account",
+          "language": "es",
+          "tags": [
+            "account"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.3123,
+          "correct": null,
+          "pred": 0.4059,
+          "expected": 0.0,
+          "language": "es",
+          "tags": [
+            "account"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.946,
+          "correct": true,
+          "prob": 0.054,
+          "expected": false,
+          "language": "es",
+          "tags": [
+            "account"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9538,
+          "correct": true,
+          "prob": 0.0462,
+          "expected": false,
+          "language": "es",
+          "tags": [
+            "account"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-es-0284",
+      "language": "es",
+      "state": "No puedo cambiar mi nombre de usuario. Por favor, devuélvanme el importe. De lo contrario cancelaré mi suscripción. Esto bloquea a todo nuestro equipo y hay que arreglarlo hoy.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.8823,
+          "correct": true,
+          "pred": "account",
+          "expected": "account",
+          "language": "es",
+          "tags": [
+            "account",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.7498,
+          "correct": null,
+          "pred": 1.9155,
+          "expected": 2.0,
+          "language": "es",
+          "tags": [
+            "account",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9535,
+          "correct": true,
+          "prob": 0.9535,
+          "expected": true,
+          "language": "es",
+          "tags": [
+            "account",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9432,
+          "correct": true,
+          "prob": 0.9432,
+          "expected": true,
+          "language": "es",
+          "tags": [
+            "account",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-hi-0285",
+      "language": "hi",
+      "state": "मुझे अपने खाते का क्रेडिट कार्ड बदलना है।",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.9152,
+          "correct": false,
+          "pred": "account",
+          "expected": "billing",
+          "language": "hi",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6051,
+          "correct": null,
+          "pred": 0.9851,
+          "expected": 1.0,
+          "language": "hi",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9321,
+          "correct": true,
+          "prob": 0.0679,
+          "expected": false,
+          "language": "hi",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.92,
+          "correct": true,
+          "prob": 0.08,
+          "expected": false,
+          "language": "hi",
+          "tags": [
+            "billing"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-hi-0286",
+      "language": "hi",
+      "state": "मुझे अपने खाते का क्रेडिट कार्ड बदलना है। कृपया मुझे राशि वापस करें।",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.4778,
+          "correct": false,
+          "pred": "account",
+          "expected": "billing",
+          "language": "hi",
+          "tags": [
+            "billing",
+            "refund"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6514,
+          "correct": null,
+          "pred": 0.9895,
+          "expected": 1.0,
+          "language": "hi",
+          "tags": [
+            "billing",
+            "refund"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9469,
+          "correct": true,
+          "prob": 0.0531,
+          "expected": false,
+          "language": "hi",
+          "tags": [
+            "billing",
+            "refund"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.958,
+          "correct": true,
+          "prob": 0.958,
+          "expected": true,
+          "language": "hi",
+          "tags": [
+            "billing",
+            "refund"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-hi-0287",
+      "language": "hi",
+      "state": "मुझे अपने खाते का क्रेडिट कार्ड बदलना है। वरना मैं अपनी सदस्यता रद्द कर दूंगा। यह हमारी पूरी टीम को रोक रहा है और आज ठीक होना चाहिए।",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.6958,
+          "correct": false,
+          "pred": "account",
+          "expected": "billing",
+          "language": "hi",
+          "tags": [
+            "billing",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6725,
+          "correct": null,
+          "pred": 1.8639,
+          "expected": 2.0,
+          "language": "hi",
+          "tags": [
+            "billing",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9479,
+          "correct": true,
+          "prob": 0.9479,
+          "expected": true,
+          "language": "hi",
+          "tags": [
+            "billing",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9576,
+          "correct": true,
+          "prob": 0.0424,
+          "expected": false,
+          "language": "hi",
+          "tags": [
+            "billing",
+            "churn",
+            "urgent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-hi-0288",
+      "language": "hi",
+      "state": "मुझे अपने खाते का क्रेडिट कार्ड बदलना है। कोई जल्दी नहीं, जब समय मिले।",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.878,
+          "correct": false,
+          "pred": "account",
+          "expected": "billing",
+          "language": "hi",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.1318,
+          "correct": null,
+          "pred": 0.7471,
+          "expected": 0.0,
+          "language": "hi",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9236,
+          "correct": true,
+          "prob": 0.0764,
+          "expected": false,
+          "language": "hi",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9311,
+          "correct": true,
+          "prob": 0.0689,
+          "expected": false,
+          "language": "hi",
+          "tags": [
+            "billing"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-hi-0289",
+      "language": "hi",
+      "state": "मुझे अपने खाते का क्रेडिट कार्ड बदलना है। कृपया मुझे राशि वापस करें। वरना मैं अपनी सदस्यता रद्द कर दूंगा। यह हमारी पूरी टीम को रोक रहा है और आज ठीक होना चाहिए।",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.66,
+          "correct": false,
+          "pred": "account",
+          "expected": "billing",
+          "language": "hi",
+          "tags": [
+            "billing",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6589,
+          "correct": null,
+          "pred": 1.868,
+          "expected": 2.0,
+          "language": "hi",
+          "tags": [
+            "billing",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9522,
+          "correct": true,
+          "prob": 0.9522,
+          "expected": true,
+          "language": "hi",
+          "tags": [
+            "billing",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.93,
+          "correct": true,
+          "prob": 0.93,
+          "expected": true,
+          "language": "hi",
+          "tags": [
+            "billing",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-hi-0290",
+      "language": "hi",
+      "state": "रिपोर्ट निर्यात करने पर त्रुटि आती है।",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.7529,
+          "correct": true,
+          "pred": "technical",
+          "expected": "technical",
+          "language": "hi",
+          "tags": [
+            "technical"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.68,
+          "correct": null,
+          "pred": 0.995,
+          "expected": 1.0,
+          "language": "hi",
+          "tags": [
+            "technical"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9512,
+          "correct": true,
+          "prob": 0.0488,
+          "expected": false,
+          "language": "hi",
+          "tags": [
+            "technical"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9569,
+          "correct": true,
+          "prob": 0.0431,
+          "expected": false,
+          "language": "hi",
+          "tags": [
+            "technical"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-hi-0291",
+      "language": "hi",
+      "state": "रिपोर्ट निर्यात करने पर त्रुटि आती है। कृपया मुझे राशि वापस करें।",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.5517,
+          "correct": true,
+          "pred": "technical",
+          "expected": "technical",
+          "language": "hi",
+          "tags": [
+            "technical",
+            "refund"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6688,
+          "correct": null,
+          "pred": 0.9967,
+          "expected": 1.0,
+          "language": "hi",
+          "tags": [
+            "technical",
+            "refund"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9556,
+          "correct": true,
+          "prob": 0.0444,
+          "expected": false,
+          "language": "hi",
+          "tags": [
+            "technical",
+            "refund"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9577,
+          "correct": true,
+          "prob": 0.9577,
+          "expected": true,
+          "language": "hi",
+          "tags": [
+            "technical",
+            "refund"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-hi-0292",
+      "language": "hi",
+      "state": "रिपोर्ट निर्यात करने पर त्रुटि आती है। वरना मैं अपनी सदस्यता रद्द कर दूंगा। यह हमारी पूरी टीम को रोक रहा है और आज ठीक होना चाहिए।",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.889,
+          "correct": true,
+          "pred": "technical",
+          "expected": "technical",
+          "language": "hi",
+          "tags": [
+            "technical",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6519,
+          "correct": null,
+          "pred": 1.8525,
+          "expected": 2.0,
+          "language": "hi",
+          "tags": [
+            "technical",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9323,
+          "correct": true,
+          "prob": 0.9323,
+          "expected": true,
+          "language": "hi",
+          "tags": [
+            "technical",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9546,
+          "correct": true,
+          "prob": 0.0454,
+          "expected": false,
+          "language": "hi",
+          "tags": [
+            "technical",
+            "churn",
+            "urgent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-hi-0293",
+      "language": "hi",
+      "state": "रिपोर्ट निर्यात करने पर त्रुटि आती है। कोई जल्दी नहीं, जब समय मिले।",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.7427,
+          "correct": true,
+          "pred": "technical",
+          "expected": "technical",
+          "language": "hi",
+          "tags": [
+            "technical"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.309,
+          "correct": null,
+          "pred": 0.9329,
+          "expected": 0.0,
+          "language": "hi",
+          "tags": [
+            "technical"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9532,
+          "correct": true,
+          "prob": 0.0468,
+          "expected": false,
+          "language": "hi",
+          "tags": [
+            "technical"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9556,
+          "correct": true,
+          "prob": 0.0444,
+          "expected": false,
+          "language": "hi",
+          "tags": [
+            "technical"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-hi-0294",
+      "language": "hi",
+      "state": "रिपोर्ट निर्यात करने पर त्रुटि आती है। कृपया मुझे राशि वापस करें। वरना मैं अपनी सदस्यता रद्द कर दूंगा। यह हमारी पूरी टीम को रोक रहा है और आज ठीक होना चाहिए।",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.8185,
+          "correct": true,
+          "pred": "technical",
+          "expected": "technical",
+          "language": "hi",
+          "tags": [
+            "technical",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6734,
+          "correct": null,
+          "pred": 1.8711,
+          "expected": 2.0,
+          "language": "hi",
+          "tags": [
+            "technical",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9483,
+          "correct": true,
+          "prob": 0.9483,
+          "expected": true,
+          "language": "hi",
+          "tags": [
+            "technical",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9386,
+          "correct": true,
+          "prob": 0.9386,
+          "expected": true,
+          "language": "hi",
+          "tags": [
+            "technical",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-hi-0295",
+      "language": "hi",
+      "state": "मैं अपना उपयोगकर्ता नाम नहीं बदल सकता।",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.9571,
+          "correct": true,
+          "pred": "account",
+          "expected": "account",
+          "language": "hi",
+          "tags": [
+            "account"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.2651,
+          "correct": null,
+          "pred": 0.8323,
+          "expected": 1.0,
+          "language": "hi",
+          "tags": [
+            "account"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9573,
+          "correct": true,
+          "prob": 0.0427,
+          "expected": false,
+          "language": "hi",
+          "tags": [
+            "account"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9617,
+          "correct": true,
+          "prob": 0.0383,
+          "expected": false,
+          "language": "hi",
+          "tags": [
+            "account"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-hi-0296",
+      "language": "hi",
+      "state": "मैं अपना उपयोगकर्ता नाम नहीं बदल सकता। कृपया मुझे राशि वापस करें।",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.8112,
+          "correct": true,
+          "pred": "account",
+          "expected": "account",
+          "language": "hi",
+          "tags": [
+            "account",
+            "refund"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6416,
+          "correct": null,
+          "pred": 0.992,
+          "expected": 1.0,
+          "language": "hi",
+          "tags": [
+            "account",
+            "refund"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9525,
+          "correct": true,
+          "prob": 0.0475,
+          "expected": false,
+          "language": "hi",
+          "tags": [
+            "account",
+            "refund"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9564,
+          "correct": true,
+          "prob": 0.9564,
+          "expected": true,
+          "language": "hi",
+          "tags": [
+            "account",
+            "refund"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-hi-0297",
+      "language": "hi",
+      "state": "मैं अपना उपयोगकर्ता नाम नहीं बदल सकता। वरना मैं अपनी सदस्यता रद्द कर दूंगा। यह हमारी पूरी टीम को रोक रहा है और आज ठीक होना चाहिए।",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.8029,
+          "correct": false,
+          "pred": "technical",
+          "expected": "account",
+          "language": "hi",
+          "tags": [
+            "account",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6743,
+          "correct": null,
+          "pred": 1.8655,
+          "expected": 2.0,
+          "language": "hi",
+          "tags": [
+            "account",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9404,
+          "correct": true,
+          "prob": 0.9404,
+          "expected": true,
+          "language": "hi",
+          "tags": [
+            "account",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9604,
+          "correct": true,
+          "prob": 0.0396,
+          "expected": false,
+          "language": "hi",
+          "tags": [
+            "account",
+            "churn",
+            "urgent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-hi-0298",
+      "language": "hi",
+      "state": "मैं अपना उपयोगकर्ता नाम नहीं बदल सकता। कोई जल्दी नहीं, जब समय मिले।",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.9456,
+          "correct": true,
+          "pred": "account",
+          "expected": "account",
+          "language": "hi",
+          "tags": [
+            "account"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.1343,
+          "correct": null,
+          "pred": 0.6762,
+          "expected": 0.0,
+          "language": "hi",
+          "tags": [
+            "account"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9552,
+          "correct": true,
+          "prob": 0.0448,
+          "expected": false,
+          "language": "hi",
+          "tags": [
+            "account"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9615,
+          "correct": true,
+          "prob": 0.0385,
+          "expected": false,
+          "language": "hi",
+          "tags": [
+            "account"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big-hi-0299",
+      "language": "hi",
+      "state": "मैं अपना उपयोगकर्ता नाम नहीं बदल सकता। कृपया मुझे राशि वापस करें। वरना मैं अपनी सदस्यता रद्द कर दूंगा। यह हमारी पूरी टीम को रोक रहा है और आज ठीक होना चाहिए।",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.7575,
+          "correct": false,
+          "pred": "technical",
+          "expected": "account",
+          "language": "hi",
+          "tags": [
+            "account",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.6912,
+          "correct": null,
+          "pred": 1.8767,
+          "expected": 2.0,
+          "language": "hi",
+          "tags": [
+            "account",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9455,
+          "correct": true,
+          "prob": 0.9455,
+          "expected": true,
+          "language": "hi",
+          "tags": [
+            "account",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "noul",
+          "confidence": 0.9029,
+          "correct": true,
+          "prob": 0.9029,
+          "expected": true,
+          "language": "hi",
+          "tags": [
+            "account",
+            "refund",
+            "churn",
+            "urgent"
+          ]
+        }
+      ]
+    }
+  ]
+}

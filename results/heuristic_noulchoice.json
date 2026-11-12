@@ -1,0 +1,2370 @@
+{
+  "schema": "layabench-report/1",
+  "backend": "heuristic",
+  "dataset": "data/tickets.eval.jsonl",
+  "n_rows": 33,
+  "noul_as_choice": true,
+  "within": [
+    0.5
+  ],
+  "questions": {
+    "department": {
+      "type": "choice",
+      "instructions": "Which team should handle this support ticket?",
+      "criteria": {
+        "billing": "double charges, invoices, payments, refunds, subscription price",
+        "technical": "bugs, crashes, outages, errors, integration or API problems",
+        "account": "login, password reset, two-factor auth, profile or access changes"
+      }
+    },
+    "urgency": {
+      "type": "score",
+      "instructions": "How urgent is this ticket?",
+      "criteria": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "churn_risk": {
+      "type": "choice",
+      "instructions": "Does the customer threaten to cancel, leave, or stop paying?",
+      "criteria": {
+        "A": "yes, the customer threatens to cancel or leave",
+        "B": "no, the customer does not threaten to cancel or leave"
+      }
+    },
+    "refund_requested": {
+      "type": "choice",
+      "instructions": "Is the customer explicitly asking to be refunded or paid back?",
+      "criteria": {
+        "A": "yes, a refund or payback is requested",
+        "B": "no, no refund or payback is requested"
+      }
+    }
+  },
+  "overall": {
+    "choice_accuracy": 0.9393939393939394,
+    "noul_accuracy": 0.9696969696969697,
+    "score_mae": 0.5454545454545454,
+    "score_within_0.5": 0.48484848484848486,
+    "mean_confidence": 0.7075757575757574,
+    "ece": 0.2560606060606059,
+    "brier": 0.10861111111111113,
+    "aurc": 0.022057698194061833,
+    "selective_accuracy@50": 0.9791666666666666,
+    "selective_accuracy@80": 0.9791666666666666,
+    "n_answers": 132,
+    "n_scored": 99,
+    "latency_p50_ms": 0.02134199985448504,
+    "latency_p95_ms": 0.03195200001755438,
+    "cost_per_decision_p50_ms": 0.00533549996362126
+  },
+  "slices": {
+    "language": {
+      "de": {
+        "choice_accuracy": 0.8571428571428571,
+        "noul_accuracy": 0.9285714285714286,
+        "score_mae": 0.8571428571428571,
+        "score_within_0.5": 0.2857142857142857,
+        "mean_confidence": 0.6976190476190475,
+        "ece": 0.2452380952380953,
+        "brier": 0.13440476190476194,
+        "aurc": 0.07834467120181406,
+        "selective_accuracy@50": 0.95,
+        "selective_accuracy@80": 0.95,
+        "n_answers": 28,
+        "n_scored": 21
+      },
+      "en": {
+        "choice_accuracy": 1.0,
+        "noul_accuracy": 1.0,
+        "score_mae": 0.6,
+        "score_within_0.5": 0.4,
+        "mean_confidence": 0.7250000000000002,
+        "ece": 0.27500000000000013,
+        "brier": 0.09125000000000003,
+        "aurc": 0.0,
+        "selective_accuracy@50": 1.0,
+        "selective_accuracy@80": 1.0,
+        "n_answers": 40,
+        "n_scored": 30
+      },
+      "es": {
+        "choice_accuracy": 1.0,
+        "noul_accuracy": 1.0,
+        "score_mae": 0.42857142857142855,
+        "score_within_0.5": 0.5714285714285714,
+        "mean_confidence": 0.7309523809523808,
+        "ece": 0.2690476190476191,
+        "brier": 0.0879761904761905,
+        "aurc": 0.0,
+        "selective_accuracy@50": 1.0,
+        "selective_accuracy@80": 1.0,
+        "n_answers": 28,
+        "n_scored": 21
+      },
+      "fr": {
+        "choice_accuracy": 0.875,
+        "noul_accuracy": 1.0,
+        "score_mae": 0.25,
+        "score_within_0.5": 0.75,
+        "mean_confidence": 0.6958333333333333,
+        "ece": 0.2958333333333334,
+        "brier": 0.10270833333333336,
+        "aurc": 0.001736111111111111,
+        "selective_accuracy@50": 1.0,
+        "selective_accuracy@80": 1.0,
+        "n_answers": 32,
+        "n_scored": 24
+      },
+      "hi": {
+        "choice_accuracy": 1.0,
+        "noul_accuracy": 0.5,
+        "score_mae": 1.0,
+        "score_within_0.5": 0.0,
+        "mean_confidence": 0.5333333333333333,
+        "ece": 0.2666666666666666,
+        "brier": 0.29333333333333333,
+        "aurc": 0.4444444444444444,
+        "selective_accuracy@50": 0.5,
+        "selective_accuracy@80": 0.6666666666666666,
+        "n_answers": 4,
+        "n_scored": 3
+      }
+    },
+    "qid": {
+      "churn_risk": {
+        "noul_accuracy": 1.0,
+        "mean_confidence": 0.6530303030303031,
+        "ece": 0.3469696969696971,
+        "brier": 0.13083333333333336,
+        "aurc": 0.0,
+        "selective_accuracy@50": 1.0,
+        "selective_accuracy@80": 1.0,
+        "n_answers": 33,
+        "n_scored": 33
+      },
+      "department": {
+        "choice_accuracy": 0.9393939393939394,
+        "mean_confidence": 0.809090909090909,
+        "ece": 0.14242424242424226,
+        "brier": 0.04106060606060607,
+        "aurc": 0.005509641873278237,
+        "selective_accuracy@50": 1.0,
+        "selective_accuracy@80": 1.0,
+        "n_answers": 33,
+        "n_scored": 33
+      },
+      "refund_requested": {
+        "noul_accuracy": 0.9393939393939394,
+        "mean_confidence": 0.6606060606060606,
+        "ece": 0.27878787878787875,
+        "brier": 0.15393939393939396,
+        "aurc": 0.07621671258034896,
+        "selective_accuracy@50": 0.9393939393939394,
+        "selective_accuracy@80": 0.9393939393939394,
+        "n_answers": 33,
+        "n_scored": 33
+      },
+      "urgency": {
+        "score_mae": 0.5454545454545454,
+        "score_within_0.5": 0.48484848484848486,
+        "n_answers": 33,
+        "n_scored": 0
+      }
+    },
+    "tag": {
+      "auth": {
+        "choice_accuracy": 1.0,
+        "noul_accuracy": 0.9166666666666666,
+        "score_mae": 0.8333333333333334,
+        "score_within_0.5": 0.3333333333333333,
+        "mean_confidence": 0.6972222222222222,
+        "ece": 0.24722222222222237,
+        "brier": 0.1454166666666667,
+        "aurc": 0.08950617283950617,
+        "selective_accuracy@50": 0.9444444444444444,
+        "selective_accuracy@80": 0.9444444444444444,
+        "n_answers": 24,
+        "n_scored": 18
+      },
+      "billing": {
+        "choice_accuracy": 1.0,
+        "noul_accuracy": 1.0,
+        "score_mae": 0.0,
+        "score_within_0.5": 1.0,
+        "mean_confidence": 0.6833333333333332,
+        "ece": 0.31666666666666665,
+        "brier": 0.11416666666666671,
+        "aurc": 0.0,
+        "selective_accuracy@50": 1.0,
+        "selective_accuracy@80": 1.0,
+        "n_answers": 16,
+        "n_scored": 12
+      },
+      "billing-error": {
+        "choice_accuracy": 1.0,
+        "noul_accuracy": 1.0,
+        "score_mae": 0.6666666666666666,
+        "score_within_0.5": 0.3333333333333333,
+        "mean_confidence": 0.7805555555555554,
+        "ece": 0.21944444444444455,
+        "brier": 0.06069444444444446,
+        "aurc": 0.0,
+        "selective_accuracy@50": 1.0,
+        "selective_accuracy@80": 1.0,
+        "n_answers": 24,
+        "n_scored": 18
+      },
+      "cancel": {
+        "choice_accuracy": 1.0,
+        "noul_accuracy": 1.0,
+        "score_mae": 1.0,
+        "score_within_0.5": 0.0,
+        "mean_confidence": 0.85,
+        "ece": 0.15000000000000002,
+        "brier": 0.022500000000000006,
+        "aurc": 0.0,
+        "selective_accuracy@50": 1.0,
+        "selective_accuracy@80": 1.0,
+        "n_answers": 8,
+        "n_scored": 6
+      },
+      "churn": {
+        "choice_accuracy": 1.0,
+        "noul_accuracy": 1.0,
+        "score_mae": 0.2,
+        "score_within_0.5": 0.8,
+        "mean_confidence": 0.7833333333333332,
+        "ece": 0.21666666666666667,
+        "brier": 0.05916666666666667,
+        "aurc": 0.0,
+        "selective_accuracy@50": 1.0,
+        "selective_accuracy@80": 1.0,
+        "n_answers": 20,
+        "n_scored": 15
+      },
+      "crash": {
+        "choice_accuracy": 0.75,
+        "noul_accuracy": 1.0,
+        "score_mae": 0.75,
+        "score_within_0.5": 0.25,
+        "mean_confidence": 0.6458333333333331,
+        "ece": 0.3375,
+        "brier": 0.12562500000000007,
+        "aurc": 0.006944444444444444,
+        "selective_accuracy@50": 1.0,
+        "selective_accuracy@80": 1.0,
+        "n_answers": 16,
+        "n_scored": 12
+      },
+      "integration": {
+        "choice_accuracy": 1.0,
+        "noul_accuracy": 1.0,
+        "score_mae": 0.5,
+        "score_within_0.5": 0.5,
+        "mean_confidence": 0.6833333333333332,
+        "ece": 0.31666666666666665,
+        "brier": 0.11416666666666671,
+        "aurc": 0.0,
+        "selective_accuracy@50": 1.0,
+        "selective_accuracy@80": 1.0,
+        "n_answers": 16,
+        "n_scored": 12
+      },
+      "json-state": {
+        "choice_accuracy": 1.0,
+        "noul_accuracy": 0.5,
+        "score_mae": 1.0,
+        "score_within_0.5": 0.0,
+        "mean_confidence": 0.5333333333333333,
+        "ece": 0.2666666666666666,
+        "brier": 0.29333333333333333,
+        "aurc": 0.4444444444444444,
+        "selective_accuracy@50": 0.5,
+        "selective_accuracy@80": 0.6666666666666666,
+        "n_answers": 4,
+        "n_scored": 3
+      },
+      "lockout": {
+        "choice_accuracy": 1.0,
+        "noul_accuracy": 1.0,
+        "score_mae": 1.5,
+        "score_within_0.5": 0.0,
+        "mean_confidence": 0.6833333333333332,
+        "ece": 0.31666666666666665,
+        "brier": 0.1141666666666667,
+        "aurc": 0.0,
+        "selective_accuracy@50": 1.0,
+        "selective_accuracy@80": 1.0,
+        "n_answers": 8,
+        "n_scored": 6
+      },
+      "outage": {
+        "choice_accuracy": 1.0,
+        "noul_accuracy": 1.0,
+        "score_mae": 1.0,
+        "score_within_0.5": 0.0,
+        "mean_confidence": 0.6833333333333332,
+        "ece": 0.31666666666666665,
+        "brier": 0.1141666666666667,
+        "aurc": 0.0,
+        "selective_accuracy@50": 1.0,
+        "selective_accuracy@80": 1.0,
+        "n_answers": 8,
+        "n_scored": 6
+      },
+      "profile": {
+        "choice_accuracy": 0.5,
+        "noul_accuracy": 1.0,
+        "score_mae": 0.0,
+        "score_within_0.5": 1.0,
+        "mean_confidence": 0.6083333333333333,
+        "ece": 0.35833333333333334,
+        "brier": 0.13708333333333336,
+        "aurc": 0.027777777777777776,
+        "selective_accuracy@50": 1.0,
+        "selective_accuracy@80": 1.0,
+        "n_answers": 8,
+        "n_scored": 6
+      },
+      "refund": {
+        "choice_accuracy": 1.0,
+        "noul_accuracy": 0.9375,
+        "score_mae": 0.75,
+        "score_within_0.5": 0.25,
+        "mean_confidence": 0.7687499999999999,
+        "ece": 0.18958333333333338,
+        "brier": 0.07927083333333333,
+        "aurc": 0.012605676328502416,
+        "selective_accuracy@50": 1.0,
+        "selective_accuracy@80": 0.9565217391304348,
+        "n_answers": 32,
+        "n_scored": 24
+      },
+      "urgent": {
+        "choice_accuracy": 1.0,
+        "noul_accuracy": 1.0,
+        "score_mae": 0.0,
+        "score_within_0.5": 1.0,
+        "mean_confidence": 0.6833333333333332,
+        "ece": 0.31666666666666665,
+        "brier": 0.1141666666666667,
+        "aurc": 0.0,
+        "selective_accuracy@50": 1.0,
+        "selective_accuracy@80": 1.0,
+        "n_answers": 4,
+        "n_scored": 3
+      }
+    }
+  },
+  "rows": [
+    {
+      "id": "en-01",
+      "language": "en",
+      "state": "I was charged twice for my March subscription. Please refund the duplicate charge today or I will cancel my account.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "pred": "billing",
+          "expected": "billing",
+          "language": "en",
+          "tags": [
+            "refund",
+            "churn",
+            "billing-error"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.75,
+          "correct": null,
+          "pred": 2.0,
+          "expected": 2.0,
+          "language": "en",
+          "tags": [
+            "refund",
+            "churn",
+            "billing-error"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "prob": 1.0,
+          "expected": true,
+          "language": "en",
+          "tags": [
+            "refund",
+            "churn",
+            "billing-error"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "prob": 1.0,
+          "expected": true,
+          "language": "en",
+          "tags": [
+            "refund",
+            "churn",
+            "billing-error"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "en-02",
+      "language": "en",
+      "state": "The app crashes every time I try to upload a photo, and now it is blocking our whole team.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "pred": "technical",
+          "expected": "technical",
+          "language": "en",
+          "tags": [
+            "crash",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.75,
+          "correct": null,
+          "pred": 2.0,
+          "expected": 2.0,
+          "language": "en",
+          "tags": [
+            "crash",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "en",
+          "tags": [
+            "crash",
+            "urgent"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "en",
+          "tags": [
+            "crash",
+            "urgent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "en-03",
+      "language": "en",
+      "state": "I forgot my password and the reset email never arrives.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "pred": "account",
+          "expected": "account",
+          "language": "en",
+          "tags": [
+            "auth"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.75,
+          "correct": null,
+          "pred": 0.0,
+          "expected": 1.0,
+          "language": "en",
+          "tags": [
+            "auth"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "en",
+          "tags": [
+            "auth"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "en",
+          "tags": [
+            "auth"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "en-04",
+      "language": "en",
+      "state": "How do I update the credit card on file for my subscription?",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "pred": "billing",
+          "expected": "billing",
+          "language": "en",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.75,
+          "correct": null,
+          "pred": 0.0,
+          "expected": 0.0,
+          "language": "en",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "en",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "en",
+          "tags": [
+            "billing"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "en-05",
+      "language": "en",
+      "state": "Our integration stopped syncing after your outage yesterday and some records are missing.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "pred": "technical",
+          "expected": "technical",
+          "language": "en",
+          "tags": [
+            "integration",
+            "outage"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.75,
+          "correct": null,
+          "pred": 2.0,
+          "expected": 1.0,
+          "language": "en",
+          "tags": [
+            "integration",
+            "outage"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "en",
+          "tags": [
+            "integration",
+            "outage"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "en",
+          "tags": [
+            "integration",
+            "outage"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "en-06",
+      "language": "en",
+      "state": "I need to update the email address on my profile.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "pred": "account",
+          "expected": "account",
+          "language": "en",
+          "tags": [
+            "profile"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.75,
+          "correct": null,
+          "pred": 0.0,
+          "expected": 0.0,
+          "language": "en",
+          "tags": [
+            "profile"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "en",
+          "tags": [
+            "profile"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "en",
+          "tags": [
+            "profile"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "en-07",
+      "language": "en",
+      "state": "We have been loyal customers for three years but this is the third billing error. Fix it or we move to a competitor.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "pred": "billing",
+          "expected": "billing",
+          "language": "en",
+          "tags": [
+            "churn",
+            "billing-error"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.75,
+          "correct": null,
+          "pred": 1.0,
+          "expected": 2.0,
+          "language": "en",
+          "tags": [
+            "churn",
+            "billing-error"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "prob": 1.0,
+          "expected": true,
+          "language": "en",
+          "tags": [
+            "churn",
+            "billing-error"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "en",
+          "tags": [
+            "churn",
+            "billing-error"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "en-08",
+      "language": "en",
+      "state": "Two-factor login fails on my new phone and I am locked out of my account.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "pred": "account",
+          "expected": "account",
+          "language": "en",
+          "tags": [
+            "auth",
+            "lockout"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.75,
+          "correct": null,
+          "pred": 1.0,
+          "expected": 2.0,
+          "language": "en",
+          "tags": [
+            "auth",
+            "lockout"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "en",
+          "tags": [
+            "auth",
+            "lockout"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "en",
+          "tags": [
+            "auth",
+            "lockout"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "en-09",
+      "language": "en",
+      "state": "Please cancel my subscription and refund the last payment.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "pred": "billing",
+          "expected": "billing",
+          "language": "en",
+          "tags": [
+            "cancel",
+            "refund"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.75,
+          "correct": null,
+          "pred": 0.0,
+          "expected": 1.0,
+          "language": "en",
+          "tags": [
+            "cancel",
+            "refund"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "prob": 1.0,
+          "expected": true,
+          "language": "en",
+          "tags": [
+            "cancel",
+            "refund"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "prob": 1.0,
+          "expected": true,
+          "language": "en",
+          "tags": [
+            "cancel",
+            "refund"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "en-10",
+      "language": "en",
+      "state": "The dashboard shows a 500 error since this morning for every user in our workspace.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "pred": "technical",
+          "expected": "technical",
+          "language": "en",
+          "tags": [
+            "outage"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.75,
+          "correct": null,
+          "pred": 1.0,
+          "expected": 2.0,
+          "language": "en",
+          "tags": [
+            "outage"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "en",
+          "tags": [
+            "outage"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "en",
+          "tags": [
+            "outage"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fr-01",
+      "language": "fr",
+      "state": "J'ai été facturé deux fois pour mon abonnement de mars, pouvez-vous me rembourser ?",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "pred": "billing",
+          "expected": "billing",
+          "language": "fr",
+          "tags": [
+            "refund",
+            "billing-error"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.75,
+          "correct": null,
+          "pred": 0.0,
+          "expected": 1.0,
+          "language": "fr",
+          "tags": [
+            "refund",
+            "billing-error"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "fr",
+          "tags": [
+            "refund",
+            "billing-error"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "prob": 1.0,
+          "expected": true,
+          "language": "fr",
+          "tags": [
+            "refund",
+            "billing-error"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fr-02",
+      "language": "fr",
+      "state": "L'application plante à chaque export de fichier, c'est très gênant.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "pred": "technical",
+          "expected": "technical",
+          "language": "fr",
+          "tags": [
+            "crash"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.75,
+          "correct": null,
+          "pred": 0.0,
+          "expected": 1.0,
+          "language": "fr",
+          "tags": [
+            "crash"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "fr",
+          "tags": [
+            "crash"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "fr",
+          "tags": [
+            "crash"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fr-03",
+      "language": "fr",
+      "state": "Je n'arrive plus à me connecter, mon mot de passe n'est pas reconnu.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "pred": "account",
+          "expected": "account",
+          "language": "fr",
+          "tags": [
+            "auth"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.75,
+          "correct": null,
+          "pred": 1.0,
+          "expected": 1.0,
+          "language": "fr",
+          "tags": [
+            "auth"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "fr",
+          "tags": [
+            "auth"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "fr",
+          "tags": [
+            "auth"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fr-04",
+      "language": "fr",
+      "state": "Cette erreur de facturation dure depuis une semaine. Si elle n'est pas corrigée aujourd'hui, je résilie mon abonnement.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "pred": "billing",
+          "expected": "billing",
+          "language": "fr",
+          "tags": [
+            "churn",
+            "billing-error"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.75,
+          "correct": null,
+          "pred": 2.0,
+          "expected": 2.0,
+          "language": "fr",
+          "tags": [
+            "churn",
+            "billing-error"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "prob": 1.0,
+          "expected": true,
+          "language": "fr",
+          "tags": [
+            "churn",
+            "billing-error"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "fr",
+          "tags": [
+            "churn",
+            "billing-error"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fr-05",
+      "language": "fr",
+      "state": "Notre API renvoie une erreur 403 depuis la dernière mise à jour.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "pred": "technical",
+          "expected": "technical",
+          "language": "fr",
+          "tags": [
+            "integration"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.75,
+          "correct": null,
+          "pred": 1.0,
+          "expected": 1.0,
+          "language": "fr",
+          "tags": [
+            "integration"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "fr",
+          "tags": [
+            "integration"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "fr",
+          "tags": [
+            "integration"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fr-06",
+      "language": "fr",
+      "state": "Pouvez-vous modifier l'adresse de facturation de mon compte ?",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "pred": "billing",
+          "expected": "billing",
+          "language": "fr",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.75,
+          "correct": null,
+          "pred": 0.0,
+          "expected": 0.0,
+          "language": "fr",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "fr",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "fr",
+          "tags": [
+            "billing"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fr-07",
+      "language": "fr",
+      "state": "Je souhaite changer mon nom d'utilisateur et mon adresse email.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.4,
+          "correct": false,
+          "pred": "billing",
+          "expected": "account",
+          "language": "fr",
+          "tags": [
+            "profile"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.75,
+          "correct": null,
+          "pred": 0.0,
+          "expected": 0.0,
+          "language": "fr",
+          "tags": [
+            "profile"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "fr",
+          "tags": [
+            "profile"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "fr",
+          "tags": [
+            "profile"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fr-08",
+      "language": "fr",
+      "state": "Merci de me rembourser, le service ne fonctionne pas comme prévu.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "pred": "billing",
+          "expected": "billing",
+          "language": "fr",
+          "tags": [
+            "refund"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.75,
+          "correct": null,
+          "pred": 1.0,
+          "expected": 1.0,
+          "language": "fr",
+          "tags": [
+            "refund"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "fr",
+          "tags": [
+            "refund"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "prob": 1.0,
+          "expected": true,
+          "language": "fr",
+          "tags": [
+            "refund"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "de-01",
+      "language": "de",
+      "state": "Mir wurde der Betrag zweimal abgebucht, bitte erstatten Sie mir das Geld.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "pred": "billing",
+          "expected": "billing",
+          "language": "de",
+          "tags": [
+            "refund",
+            "billing-error"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.75,
+          "correct": null,
+          "pred": 0.0,
+          "expected": 1.0,
+          "language": "de",
+          "tags": [
+            "refund",
+            "billing-error"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "de",
+          "tags": [
+            "refund",
+            "billing-error"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "prob": 1.0,
+          "expected": true,
+          "language": "de",
+          "tags": [
+            "refund",
+            "billing-error"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "de-02",
+      "language": "de",
+      "state": "Die App stürzt beim Start ab, ich kann sie gar nicht benutzen.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.4,
+          "correct": false,
+          "pred": "billing",
+          "expected": "technical",
+          "language": "de",
+          "tags": [
+            "crash"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.75,
+          "correct": null,
+          "pred": 2.0,
+          "expected": 1.0,
+          "language": "de",
+          "tags": [
+            "crash"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "de",
+          "tags": [
+            "crash"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "de",
+          "tags": [
+            "crash"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "de-03",
+      "language": "de",
+      "state": "Ich habe mein Passwort vergessen und bekomme keine E-Mail zum Zurücksetzen.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "pred": "account",
+          "expected": "account",
+          "language": "de",
+          "tags": [
+            "auth"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.75,
+          "correct": null,
+          "pred": 0.0,
+          "expected": 1.0,
+          "language": "de",
+          "tags": [
+            "auth"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "de",
+          "tags": [
+            "auth"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": false,
+          "prob": 1.0,
+          "expected": false,
+          "language": "de",
+          "tags": [
+            "auth"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "de-04",
+      "language": "de",
+      "state": "Wenn das nicht sofort behoben wird, kündige ich meinen Vertrag.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "pred": "billing",
+          "expected": "billing",
+          "language": "de",
+          "tags": [
+            "churn"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.75,
+          "correct": null,
+          "pred": 2.0,
+          "expected": 2.0,
+          "language": "de",
+          "tags": [
+            "churn"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "prob": 1.0,
+          "expected": true,
+          "language": "de",
+          "tags": [
+            "churn"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "de",
+          "tags": [
+            "churn"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "de-05",
+      "language": "de",
+      "state": "Die Synchronisierung funktioniert nach dem letzten Update nicht mehr.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "pred": "technical",
+          "expected": "technical",
+          "language": "de",
+          "tags": [
+            "integration"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.75,
+          "correct": null,
+          "pred": 0.0,
+          "expected": 1.0,
+          "language": "de",
+          "tags": [
+            "integration"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "de",
+          "tags": [
+            "integration"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "de",
+          "tags": [
+            "integration"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "de-06",
+      "language": "de",
+      "state": "Bitte ändern Sie die hinterlegte Kreditkarte in meinem Konto.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "pred": "billing",
+          "expected": "billing",
+          "language": "de",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.75,
+          "correct": null,
+          "pred": 0.0,
+          "expected": 0.0,
+          "language": "de",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "de",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "de",
+          "tags": [
+            "billing"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "de-07",
+      "language": "de",
+      "state": "Seit der Zwei-Faktor-Aktivierung kann ich mich nicht mehr anmelden.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "pred": "account",
+          "expected": "account",
+          "language": "de",
+          "tags": [
+            "auth",
+            "lockout"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.75,
+          "correct": null,
+          "pred": 0.0,
+          "expected": 2.0,
+          "language": "de",
+          "tags": [
+            "auth",
+            "lockout"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "de",
+          "tags": [
+            "auth",
+            "lockout"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "de",
+          "tags": [
+            "auth",
+            "lockout"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "es-01",
+      "language": "es",
+      "state": "Me cobraron dos veces este mes, quiero que me devuelvan el dinero.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "pred": "billing",
+          "expected": "billing",
+          "language": "es",
+          "tags": [
+            "refund",
+            "billing-error"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.75,
+          "correct": null,
+          "pred": 0.0,
+          "expected": 1.0,
+          "language": "es",
+          "tags": [
+            "refund",
+            "billing-error"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "es",
+          "tags": [
+            "refund",
+            "billing-error"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "prob": 1.0,
+          "expected": true,
+          "language": "es",
+          "tags": [
+            "refund",
+            "billing-error"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "es-02",
+      "language": "es",
+      "state": "La aplicación se cierra sola cada vez que abro un informe.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "pred": "technical",
+          "expected": "technical",
+          "language": "es",
+          "tags": [
+            "crash"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.75,
+          "correct": null,
+          "pred": 0.0,
+          "expected": 1.0,
+          "language": "es",
+          "tags": [
+            "crash"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "es",
+          "tags": [
+            "crash"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "es",
+          "tags": [
+            "crash"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "es-03",
+      "language": "es",
+      "state": "No puedo restablecer mi contraseña, no recibo el correo.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "pred": "account",
+          "expected": "account",
+          "language": "es",
+          "tags": [
+            "auth"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.75,
+          "correct": null,
+          "pred": 1.0,
+          "expected": 1.0,
+          "language": "es",
+          "tags": [
+            "auth"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "es",
+          "tags": [
+            "auth"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "es",
+          "tags": [
+            "auth"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "es-04",
+      "language": "es",
+      "state": "Si no arreglan esto hoy, cancelo mi suscripción y me voy.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "pred": "billing",
+          "expected": "billing",
+          "language": "es",
+          "tags": [
+            "churn"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.75,
+          "correct": null,
+          "pred": 2.0,
+          "expected": 2.0,
+          "language": "es",
+          "tags": [
+            "churn"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "prob": 1.0,
+          "expected": true,
+          "language": "es",
+          "tags": [
+            "churn"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "es",
+          "tags": [
+            "churn"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "es-05",
+      "language": "es",
+      "state": "La integración con nuestra API falla con un error 500 desde ayer.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "pred": "technical",
+          "expected": "technical",
+          "language": "es",
+          "tags": [
+            "integration"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.75,
+          "correct": null,
+          "pred": 1.0,
+          "expected": 1.0,
+          "language": "es",
+          "tags": [
+            "integration"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "es",
+          "tags": [
+            "integration"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "es",
+          "tags": [
+            "integration"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "es-06",
+      "language": "es",
+      "state": "Necesito actualizar la dirección de facturación de mi cuenta.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "pred": "billing",
+          "expected": "billing",
+          "language": "es",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.75,
+          "correct": null,
+          "pred": 0.0,
+          "expected": 0.0,
+          "language": "es",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "es",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "es",
+          "tags": [
+            "billing"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "es-07",
+      "language": "es",
+      "state": "Quiero darme de baja y que me reembolsen las últimas facturas.",
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "pred": "billing",
+          "expected": "billing",
+          "language": "es",
+          "tags": [
+            "cancel",
+            "refund"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.75,
+          "correct": null,
+          "pred": 0.0,
+          "expected": 1.0,
+          "language": "es",
+          "tags": [
+            "cancel",
+            "refund"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "prob": 1.0,
+          "expected": true,
+          "language": "es",
+          "tags": [
+            "cancel",
+            "refund"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.85,
+          "correct": true,
+          "prob": 1.0,
+          "expected": true,
+          "language": "es",
+          "tags": [
+            "cancel",
+            "refund"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hi-01",
+      "language": "hi",
+      "state": {
+        "body": "मुझसे दो बार शुल्क लिया गया, कृपया पैसे वापस करें।",
+        "channel": "email"
+      },
+      "records": [
+        {
+          "qid": "department",
+          "canon": "choice",
+          "kind": "choice",
+          "confidence": 0.4,
+          "correct": true,
+          "pred": "billing",
+          "expected": "billing",
+          "language": "hi",
+          "tags": [
+            "refund",
+            "json-state"
+          ]
+        },
+        {
+          "qid": "urgency",
+          "canon": "score",
+          "kind": "score",
+          "confidence": 0.75,
+          "correct": null,
+          "pred": 0.0,
+          "expected": 1.0,
+          "language": "hi",
+          "tags": [
+            "refund",
+            "json-state"
+          ]
+        },
+        {
+          "qid": "churn_risk",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": true,
+          "prob": 0.0,
+          "expected": false,
+          "language": "hi",
+          "tags": [
+            "refund",
+            "json-state"
+          ]
+        },
+        {
+          "qid": "refund_requested",
+          "canon": "noul",
+          "kind": "choice",
+          "confidence": 0.6,
+          "correct": false,
+          "prob": 0.0,
+          "expected": true,
+          "language": "hi",
+          "tags": [
+            "refund",
+            "json-state"
+          ]
+        }
+      ]
+    }
+  ]
+}

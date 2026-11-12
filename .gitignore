@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environment (recreated with: uv venv --python 3.12 .venv)
+.venv/
+
+# Fine-tuned checkpoints: large (1.3 GB each) and regenerable with tools/train_laya.py
+checkpoints/
+
+# Logs
+*.log
