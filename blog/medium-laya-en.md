@@ -33,6 +33,10 @@ Each ticket becomes **four typed decisions**, in one pass:
 
 ![My use case: a triage gateway](https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/assets/table-en-my-use-case-a-triage-gateway.png)
 
+Routing a ticket is exactly that: picking a path, with a probability attached.
+
+![Routing is a decision: which path does the ticket take — technical, account or billing?](https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/assets/laya.jpg)
+
 I built a small evaluation harness (metrics identical to Laya's own: accuracy, MAE, ECE, Brier, AURC, *selective accuracy*) plus a labelled dataset — first **33 hand-written tickets**, then larger versions.
 
 ---

@@ -33,6 +33,10 @@ Chaque ticket devient **quatre décisions typées**, en un seul passage :
 
 ![Mon cas d'usage : une passerelle de triage](https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/assets/table-fr-mon-cas-d-usage-une-passerelle-de-triage.png)
 
+Router un ticket, c'est exactement ça : choisir un chemin, avec une probabilité attachée.
+
+![Router, c'est décider : quel chemin prend le ticket — technical, account ou billing ?](https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/assets/laya.jpg)
+
 J'ai construit un petit harness d'évaluation (métriques identiques à celles de Laya : justesse, MAE, ECE, Brier, AURC, *selective accuracy*) et un jeu de données étiqueté — d'abord **33 tickets écrits à la main**, puis des variantes plus grandes.
 
 ---
