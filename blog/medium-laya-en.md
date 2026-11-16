@@ -117,7 +117,7 @@ This is where the difference between an *impressive* benchmark and a *useful* on
 
 If the test set is generated from the same templates as training, the model just learns the phrasing and the scores are inflated. So I split the dataset **by template**: one whole realisation per (language, department) is held out. The test set therefore only contains **phrasings never seen during training**.
 
-![Results on the held-out test](assets/results-en.png)
+![Results on the held-out test](https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/assets/results-en.png)
 
 | run | choice | noul | score_mae | ECE | AURC | sel@80 |
 |---|---|---|---|---|---|---|
@@ -234,15 +234,5 @@ XNLI, Banking77, SST-5, AG News — and TypeSafe/Jev as the third-party comparat
 
 *About the author — **CTO 3D/IA at Atos**. I build decision and applied-AI systems; the code for this article is open: [github.com/xuarig007/laya_test](https://github.com/xuarig007/laya_test).*
 
----
-
-<!--
-DRAFT — publishing notes (delete before publishing)
-
-Medium tags (max 5): Machine Learning, NLP, Large Language Models, Python, Hugging Face
-Estimated reading time: ~9 min
-Cover image: blog/assets/cover-en.png
-French version: blog/medium-laya-fr.md
--->
 
 

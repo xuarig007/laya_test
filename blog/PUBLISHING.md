@@ -100,3 +100,45 @@ prénom/nom en début de ligne si tu veux signer.
 > deux endroits où le rôle apparaît. La mention dans l'article est le troisième (et le plus visible pour
 > un lecteur qui arrive par le lien).
 
+---
+
+## 8. Dépannage : « Import failed — the server stopped responding »
+
+Deux causes fréquentes, toutes deux corrigées ici :
+
+1. **l'URL d'import est incomplète** (l'URL `refs/heads/...` se coupe facilement) ;
+2. **Medium n'arrive pas à récupérer les images** : elles étaient référencées en chemins *relatifs*
+   (`assets/results-en.png`), illisibles depuis l'extérieur. Elles sont maintenant en **URL absolues**
+   (`https://raw.githubusercontent.com/.../assets/...png`) → Medium les télécharge pendant l'import.
+
+Les notes internes (bloc HTML `<!-- ... -->` en fin d'article) ont aussi été retirées : elles
+n'apportent rien au lecteur et peuvent perturber l'importeur.
+
+### URL d'import exacte (à copier en entier, sans coupure)
+
+```
+https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/medium-laya-en.md
+```
+
+Variante acceptée : `.../laya_test/refs/heads/main/blog/medium-laya-en.md`
+(FR : remplacer `medium-laya-en.md` par `medium-laya-fr.md`).
+
+### Si l'import échoue encore (l'importeur de Medium est capricieux)
+
+1. **Réessayer** — l'erreur « server stopped responding » est souvent transitoire (« Try again »).
+2. **Passer par un gist** (la méthode la plus fiable) : créer un gist public sur
+   [gist.github.com](https://gist.github.com) avec le contenu de `medium-laya-en.md`, puis importer
+   l'URL **raw** du gist (`https://gist.githubusercontent.com/<user>/<id>/raw/...`).
+3. **Coller directement dans l'éditeur Medium** : Medium convertit le Markdown au collage (titres,
+   gras, listes, blocs de code). Les tableaux ne passent pas → insérer l'image `results-en.png` à la
+   place. C'est la méthode la plus rapide si l'import refuse.
+4. **Publier d'abord ailleurs** (dev.to, blog perso) puis importer l'**URL de la page publiée** :
+   l'importeur Medium est d'abord conçu pour une page HTML publiée, pas pour un fichier brut.
+
+### Rappel des métadonnées (reprises de la section 3)
+
+- lecture estimée : ~9 min
+- couverture : `assets/cover-en.png` (EN) / `assets/cover-fr.png` (FR)
+- tags (5 max) : `Machine Learning`, `NLP`, `Large Language Models`, `Python`, `Hugging Face`
+
+
