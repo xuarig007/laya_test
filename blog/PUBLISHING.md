@@ -116,12 +116,12 @@ n'apportent rien au lecteur et peuvent perturber l'importeur.
 
 ### URL d'import exacte (à copier en entier, sans coupure)
 
-```
-https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/medium-laya-en.md
-```
+Utiliser la **variante prête pour l'import** (voir § 9), pas le fichier source :
 
-Variante acceptée : `.../laya_test/refs/heads/main/blog/medium-laya-en.md`
-(FR : remplacer `medium-laya-en.md` par `medium-laya-fr.md`).
+```
+EN : https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/medium-laya-en.medium.md
+FR : https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/medium-laya-fr.medium.md
+```
 
 > **Cache CDN de GitHub.** `raw.githubusercontent.com` sert les fichiers avec
 > `cache-control: max-age=300` : après un `git push`, l'URL raw peut renvoyer **l'ancienne version
@@ -151,5 +151,39 @@ Variante acceptée : `.../laya_test/refs/heads/main/blog/medium-laya-en.md`
 - lecture estimée : ~9 min
 - couverture : `assets/cover-en.png` (EN) / `assets/cover-fr.png` (FR)
 - tags (5 max) : `Machine Learning`, `NLP`, `Large Language Models`, `Python`, `Hugging Face`
+
+---
+
+## 9. Variante prête pour l'import : `*.medium.md`
+
+Medium **n'affiche pas les tableaux Markdown** : ils s'aplatissent en texte illisible
+(`runchoicecnoulbefore (base)0.8000.800…`).
+
+`tools/make_table_images.py` lit les articles, **rend chaque tableau en image**
+(`blog/assets/table-<lang>-<n>.png`) puis écrit une variante **prête à importer** :
+
+| source (GitHub) | variante à importer sur Medium |
+|---|---|
+| `blog/medium-laya-en.md` | **`blog/medium-laya-en.medium.md`** |
+| `blog/medium-laya-fr.md` | **`blog/medium-laya-fr.medium.md`** |
+
+- les tableaux y sont remplacés par des images en **URL absolues** → Medium les télécharge à l'import ;
+- un tableau qui **duplique une image déjà présente juste au-dessus** (`results-en.png`) est supprimé :
+  pas de doublon ;
+- le gras des cellules est rendu en gras, le balisage (`` ` `` et `**`) est nettoyé à l'affichage.
+
+Régénérer après **toute** modification d'article :
+
+```bash
+.venv/bin/python tools/make_table_images.py
+```
+
+### URL d'import à utiliser
+
+```
+EN : https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/medium-laya-en.medium.md
+FR : https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/medium-laya-fr.medium.md
+```
+
 
 
