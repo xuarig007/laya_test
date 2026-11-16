@@ -115,7 +115,7 @@ Là se joue la différence entre un benchmark *impressionnant* et un benchmark *
 
 Si le jeu de test est généré par les mêmes templates que l'entraînement, le modèle apprend les tournures et les scores sont gonflés. J'ai donc découpé le jeu **par template** : on tient à l'écart **une formulation entière** par (langue, département). Le test n'utilise ainsi que des **phrases jamais vues à l'entraînement**.
 
-![Résultats sur le test tenu à l'écart](assets/results.png)
+![Résultats sur le test tenu à l'écart](assets/results-fr.png)
 
 | run | choice | noul | score_mae | ECE | AURC | sel@80 |
 |---|---|---|---|---|---|---|
@@ -207,7 +207,7 @@ BROUILLON — notes de publication (à supprimer avant publication)
 
 Tags Medium (max 5) : Machine Learning, NLP, LLM, Python, Hugging Face
 Temps de lecture estimé : ~9 min
-Image de couverture : blog/assets/cover.png
+Image de couverture : blog/assets/cover-fr.png
 -->
 
 

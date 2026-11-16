@@ -1,7 +1,13 @@
 # Publier l'article sur Medium
 
-Tout est prêt dans `blog/` : l'article (`medium-laya-fr.md`) et deux visuels
-(`assets/cover.png`, `assets/results.png`).
+Tout est prêt dans `blog/` :
+
+| article | visuels |
+|---|---|
+| `medium-laya-fr.md` (français) | `assets/cover-fr.png`, `assets/results-fr.png` |
+| `medium-laya-en.md` (English) | `assets/cover-en.png`, `assets/results-en.png` |
+
+Régénérer les 4 visuels : `python tools/make_medium_assets.py`
 
 ## 1. Choisir la méthode de publication
 
@@ -20,8 +26,8 @@ place du tableau Markdown (garde le tableau Markdown pour la version GitHub/raw)
 
 | image | usage |
 |---|---|
-| `assets/cover.png` (1500×750) | **image de couverture** : au moment de publier, « Add a featured image » |
-| `assets/results.png` | à insérer **dans** l'article, à la place du tableau Markdown de l'étape 4 |
+| `assets/cover-fr.png` / `cover-en.png` (1500×750) | **image de couverture** : au moment de publier, « Add a featured image » |
+| `assets/results-fr.png` / `results-en.png` | à insérer **dans** l'article, à la place du tableau Markdown de l'étape 4 |
 
 Astuce : glisse-dépose le PNG directement dans l'éditeur Medium.
 
@@ -34,6 +40,13 @@ Astuce : glisse-dépose le PNG directement dans l'éditeur Medium.
 - **Tags** (5 max) : `Machine Learning`, `NLP`, `Large Language Models`, `Python`, `Hugging Face`
 - **SEO description** (facultatif) :
   `Benchmark et fine-tuning de Laya, un moteur de décision non-autorégressif, sur un cas d'usage de triage de tickets support multilingue. Résultats mesurés, du zero-shot à la production.`
+
+### Version anglaise (`medium-laya-en.md`)
+
+- **Title** : `Laya, from zero-shot to production: fine-tuning an open-source decision engine`
+- **Subtitle** : `Routing support tickets in 5 languages in a single forward pass. From 33 to 300 examples, CPU then GPU — with the numbers, including the ones that hurt.`
+- **Tags** : `Machine Learning`, `NLP`, `Large Language Models`, `Python`, `Hugging Face`
+- **SEO description** : `Benchmarking and fine-tuning Laya, a non-autoregressive decision engine, on multilingual support-ticket routing — measured results, from zero-shot to production.`
 
 ## 4. Checklist avant de publier
 
@@ -51,7 +64,15 @@ Astuce : glisse-dépose le PNG directement dans l'éditeur Medium.
 - Reposter sur **dev.to** (même Markdown, mais là les tableaux passent) avec canonical → Medium.
 - Répondre aux commentaires : c'est ce qui fait vivre un article technique.
 
-## 6. (Optionnel) Version anglaise
+## 6. Les deux langues
 
-Medium a une audience majoritairement anglophone ; une traduction EN élargit nettement la portée.
-Le même Markdown + les mêmes images suffisent (titres, tags et sous-titre à traduire).
+Les deux versions sont prêtes :
+
+| | titre | couverture |
+|---|---|---|
+| EN (`medium-laya-en.md`) | *Laya, from zero-shot to production: fine-tuning an open-source decision engine* | `cover-en.png` |
+| FR (`medium-laya-fr.md`) | *Laya, du zero-shot à la production : affiner un moteur de décision open source* | `cover-fr.png` |
+
+Medium a une audience majoritairement anglophone : publier **l'anglais** d'abord donne plus de portée.
+La version FR peut suivre sur le même compte, ou sur dev.to / blog perso avec un **canonical**
+croisé vers Medium (et inversement) pour éviter le contenu dupliqué.
