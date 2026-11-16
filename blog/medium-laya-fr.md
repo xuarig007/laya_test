@@ -231,6 +231,3 @@ XNLI, Banking77, SST-5, AG News — et TypeSafe/Jev comme comparateur tiers.
 ---
 
 *À propos — **CTO 3D/IA chez Atos**. Je conçois des systèmes de décision et d'IA appliquée ; le code de cet article est ouvert : [github.com/xuarig007/laya_test](https://github.com/xuarig007/laya_test).*
-
-
-

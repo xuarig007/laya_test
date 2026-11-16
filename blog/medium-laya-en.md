@@ -233,6 +233,3 @@ XNLI, Banking77, SST-5, AG News — and TypeSafe/Jev as the third-party comparat
 ---
 
 *About the author — **CTO 3D/IA at Atos**. I build decision and applied-AI systems; the code for this article is open: [github.com/xuarig007/laya_test](https://github.com/xuarig007/laya_test).*
-
-
-
