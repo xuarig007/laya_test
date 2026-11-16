@@ -26,8 +26,10 @@ place du tableau Markdown (garde le tableau Markdown pour la version GitHub/raw)
 
 | image | usage |
 |---|---|
-| `assets/cover-fr.png` / `cover-en.png` (1500×750) | **image de couverture** : au moment de publier, « Add a featured image » |
-| `assets/results-fr.png` / `results-en.png` | à insérer **dans** l'article, à la place du tableau Markdown de l'étape 4 |
+| `assets/featured-fr.png` / `featured-en.png` (2000×1000) | **image de couverture recommandée** : titre + aperçu réel de l'interface (« Add a featured image »). Les captures sont composées automatiquement. |
+| `assets/cover-fr.png` / `cover-en.png` (1500×750) | variante « texte seul », si vous préférez sans capture |
+| `assets/shot-<lang>.png` / `shot-guide-<lang>.png` | captures de la page de test (résultat et guide), **déjà insérées** dans les articles |
+| `assets/results-fr.png` / `results-en.png` | tableau comparatif (déjà en image dans les articles) |
 
 Astuce : glisse-dépose le PNG directement dans l'éditeur Medium.
 
