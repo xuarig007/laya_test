@@ -5,6 +5,8 @@
 > [documentation](https://nandhakishorm.github.io/laya/). Tout ici est exécutable et
 > reproductible : jeu de données étiqueté, backends comparés, métriques, rapports.
 
+**Dépôt :** https://github.com/xuarig007/laya_test
+
 Laya est un **moteur de décision** (*System 1*, non-autorégressif) : on lui donne un *état*
 (texte, e-mail, ticket ou JSON) et des **questions typées**, et il renvoie des réponses typées
 avec des probabilités dans **un seul forward pass (~33 ms GPU)**, en 100+ langues. Il ne génère
@@ -489,6 +491,10 @@ for loss in soft-ce rlcd; do
       --epochs 12 --micro-batch 16 --grad-accum 1 --calib-frac 0.25 --loss $loss
 done
 ```
+
+---
+
+*Auteur : **CTO 3D/IA chez Atos** · dépôt : [github.com/xuarig007/laya_test](https://github.com/xuarig007/laya_test)*
 
 
 

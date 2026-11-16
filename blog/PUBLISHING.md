@@ -76,3 +76,27 @@ Les deux versions sont prêtes :
 Medium a une audience majoritairement anglophone : publier **l'anglais** d'abord donne plus de portée.
 La version FR peut suivre sur le même compte, ou sur dev.to / blog perso avec un **canonical**
 croisé vers Medium (et inversement) pour éviter le contenu dupliqué.
+
+---
+
+## 7. Profil Medium — bio et liens
+
+**Bio de profil** (Medium → *Settings* → *Profile* → champ **Bio**, 160 caractères max) :
+
+> CTO 3D/IA chez Atos · benchmarks, fine-tuning et mise en production de modèles de décision
+
+Version anglaise :
+
+> CTO 3D/IA at Atos · benchmarking, fine-tuning and shipping decision models
+
+**Liens du profil** (*Settings* → *Profile* → comptes sociaux) :
+- **GitHub** : https://github.com/xuarig007/laya_test
+
+**Mention en fin d'article** : déjà rédigée dans les deux articles —
+`À propos — CTO 3D/IA chez Atos …` et `About the author — CTO 3D/IA at Atos …`. Tu peux y ajouter ton
+prénom/nom en début de ligne si tu veux signer.
+
+> À savoir : Medium n'expose pas de champ « employeur » ; la **bio** et les **liens du profil** sont les
+> deux endroits où le rôle apparaît. La mention dans l'article est le troisième (et le plus visible pour
+> un lecteur qui arrive par le lien).
+

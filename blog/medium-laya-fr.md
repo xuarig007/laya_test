@@ -171,7 +171,7 @@ C'est le meilleur moyen d'attraper les cas où le modèle de base est **confiant
 
 ## Reproduire
 
-Tout est scripté (le dépôt contient le harness, les datasets et les outils) :
+Tout le code est sur GitHub : **[github.com/xuarig007/laya_test](https://github.com/xuarig007/laya_test)** — harness d'évaluation, datasets et outils :
 
 ```bash
 # le harness d'évaluation (métriques identiques à laya.evals)
@@ -199,6 +199,10 @@ Si vous avez des tâches de **classification / routage / gating** dans un flux m
 - La doc : [nandhakishorm.github.io/laya](https://nandhakishorm.github.io/laya/)
 
 *Si cet article vous a été utile, un clap 👏 aide à le faire lire. Et si vous avez affiné Laya sur vos propres décisions, racontez ce que ça a donné en commentaire.*
+
+---
+
+*À propos — **CTO 3D/IA chez Atos**. Je conçois des systèmes de décision et d'IA appliquée ; le code de cet article est ouvert : [github.com/xuarig007/laya_test](https://github.com/xuarig007/laya_test).*
 
 ---
 

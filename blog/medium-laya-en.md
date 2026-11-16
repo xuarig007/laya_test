@@ -173,7 +173,7 @@ It's the best way to catch the cases where the base model is **confident and wro
 
 ## Reproduce it
 
-Everything is scripted (the repo has the harness, the datasets and the tools):
+The full code is on GitHub: **[github.com/xuarig007/laya_test](https://github.com/xuarig007/laya_test)** — evaluation harness, datasets and tools:
 
 ```bash
 # the evaluation harness (metrics identical to laya.evals)
@@ -201,6 +201,10 @@ If you have **classification / routing / gating** tasks in a multilingual stream
 - The docs: [nandhakishorm.github.io/laya](https://nandhakishorm.github.io/laya/)
 
 *If this was useful, a clap 👏 helps others find it. And if you fine-tuned Laya on your own decisions, tell me how it went in the comments.*
+
+---
+
+*About the author — **CTO 3D/IA at Atos**. I build decision and applied-AI systems; the code for this article is open: [github.com/xuarig007/laya_test](https://github.com/xuarig007/laya_test).*
 
 ---
 
