@@ -496,6 +496,62 @@ done
 
 ---
 
+## 11. Sources & inspirations
+
+### Le modèle et sa documentation
+
+- **Carte de modèle** — [huggingface.co/convaiinnovations/laya](https://huggingface.co/convaiinnovations/laya)
+- **Code source** — [github.com/NandhaKishorM/laya](https://github.com/NandhaKishorM/laya) ; notamment
+  `docs/evals.md` (format du jeu de données / questions et définitions des métriques), `docs/finetune.md`
+  (recette d'entraînement) et `BENCHMARKS.md` (chiffres de référence)
+- **Documentation** — [nandhakishorm.github.io/laya](https://nandhakishorm.github.io/laya/)
+- **Checkpoint multilingue** — [convaiinnovations/laya-multilingual](https://huggingface.co/convaiinnovations/laya-multilingual)
+  · **Space de démo** — [convaiinnovations/laya-demo](https://huggingface.co/spaces/convaiinnovations/laya-demo)
+  · **PyPI** — [pypi.org/project/laya](https://pypi.org/project/laya/)
+- **Article scientifique** — M, N.; M, A. *From Laya to Vega: Open Non-Autoregressive Decision Models
+  with Calibrated Probabilities*, Preprints 2026, 2026110781 —
+  [doi:10.20944/preprints202611.0781.v1](https://doi.org/10.20944/preprints202611.0781.v1) (c'est de
+  là que viennent l'objectif RLCD et la posture « probabilités calibrées »)
+
+### Ce que ce projet emprunte à Laya
+
+- le **format `laya-evals`** — une ligne JSON par cas (`state`, `questions`, `expected`, `language`,
+  `tags`) et ses définitions de métriques (`choice_accuracy`, `noul_accuracy`, `score_mae`, `ece`,
+  `brier`, `aurc`, `selective_accuracy@*`, latences) — réimplémentées en numpy dans
+  `layabench/metrics.py` ;
+- la **recette de fine-tuning** — `laya-train` / `laya.train.finetune`, RLCD vs soft-CE, ajustement des
+  températures sur une tranche de calibration tenue à l'écart ;
+- le **cadrage « limites honnêtes »** — checkpoints de base sur-confiants, `noul` qui suit ses
+  étiquettes, chute de précision au-delà de ~20 options, `action.act_probability` sans signal utile.
+
+### Littérature sur la calibration et l'évaluation
+
+- Guo et al., *On Calibration of Modern Neural Networks* (ECE, temperature scaling), ICML 2017
+- Brier (1950), *Verification of forecasts expressed in terms of probability* — le score de Brier
+- Courbes risque–couverture / prédiction sélective : El-Yaniv & Wiener (2010) ; Geifman & El-Yaniv
+  (2017) — la famille AURC et « selective accuracy »
+- Kahneman, *Système 1 / Système 2* — le cadrage repris par la carte de modèle
+
+### Jeux de données de référence des benchmarks de Laya
+
+Inspiration de conception uniquement — **non utilisés ici** : MASSIVE (intentions, 51 langues), XNLI
+(15 langues), Banking77, SST-5, AG News, ainsi que **TypeSafe / Jev**, dont les chiffres publiés
+servent de comparateur tiers dans les tableaux de Laya.
+
+### Outillage
+
+PyTorch, Hugging Face `transformers` / `huggingface_hub`, **uv**, `reportlab` + Pillow (le one-pager et
+les visuels du blog), `pypdfium2` (contrôle de rendu des PDF), polices DejaVu.
+
+### Produit par ce projet
+
+Le jeu de tickets multilingue (33 écrits à la main + variantes générées), les découpages par paliers
+(`explicit` / `stratified` / `template`), le harness d'évaluation, le tester web local et le one-pager.
+Tous les chiffres sont mesurés sur le matériel décrit dans chaque section (CPU, et une RTX 4070 pour
+les runs GPU).
+
+---
+
 *Auteur : **CTO 3D/IA chez Atos** · dépôt : [github.com/xuarig007/laya_test](https://github.com/xuarig007/laya_test)*
 
 

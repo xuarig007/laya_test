@@ -196,9 +196,37 @@ Laya isn't just another LLM: it's a **decision engine** — one forward pass, ca
 
 If you have **classification / routing / gating** tasks in a multilingual stream, it's worth a look: faster, cheaper and more predictable than calling a generative model.
 
-**Resources:**
-- The model: [huggingface.co/convaiinnovations/laya](https://huggingface.co/convaiinnovations/laya)
-- The docs: [nandhakishorm.github.io/laya](https://nandhakishorm.github.io/laya/)
+## Sources & inspirations
+
+This project builds directly on Laya and on a few well-known ideas. Here is what it draws from.
+
+**The model and its documentation**
+
+- Model card — [huggingface.co/convaiinnovations/laya](https://huggingface.co/convaiinnovations/laya)
+- Source and docs — [github.com/NandhaKishorM/laya](https://github.com/NandhaKishorM/laya) and
+  [nandhakishorm.github.io/laya](https://nandhakishorm.github.io/laya/), in particular `docs/evals.md`
+  (dataset format and metric definitions) and `docs/finetune.md` (the training recipe)
+- Multilingual checkpoint — [convaiinnovations/laya-multilingual](https://huggingface.co/convaiinnovations/laya-multilingual);
+  live demo — [convaiinnovations/laya-demo](https://huggingface.co/spaces/convaiinnovations/laya-demo);
+  PyPI — [pypi.org/project/laya](https://pypi.org/project/laya/)
+- Paper — M, N.; M, A., *From Laya to Vega: Open Non-Autoregressive Decision Models with Calibrated
+  Probabilities*, Preprints 2026, 2026110781 ([doi:10.20944/preprints202611.0781.v1](https://doi.org/10.20944/preprints202611.0781.v1))
+  — where the RLCD objective and the calibrated-probability stance come from
+
+**Borrowed from Laya**: the `laya-evals` dataset format and its metric definitions (re-implemented in
+numpy here), the fine-tuning recipe (soft-CE vs RLCD, temperature fitting on a held-out calibration
+slice), and the "honest limits" framing (over-confident checkpoints, `noul` following its labels,
+accuracy falling off past ~20 options).
+
+**Calibration and evaluation literature**: Guo et al., *On Calibration of Modern Neural Networks*
+(ICML 2017 — ECE and temperature scaling); Brier (1950) for the Brier score; El-Yaniv & Wiener (2010)
+and Geifman & El-Yaniv (2017) for risk–coverage and selective prediction (AURC, selective accuracy);
+Kahneman's *Thinking, Fast and Slow* for the "System 1" framing.
+
+**Reference datasets behind Laya's own benchmarks** (design inspiration, not used here): MASSIVE,
+XNLI, Banking77, SST-5, AG News — and TypeSafe/Jev as the third-party comparator.
+
+**Tooling**: PyTorch, Hugging Face `transformers`, uv, reportlab + Pillow, DejaVu fonts.
 
 *If this was useful, a clap 👏 helps others find it. And if you fine-tuned Laya on your own decisions, tell me how it went in the comments.*
 
