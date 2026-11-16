@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import re
 import sys
+import unicodedata
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
@@ -68,6 +69,13 @@ def wrap(d: ImageDraw.ImageDraw, text: str, f, max_w: float) -> list[str]:
 def clean(text) -> str:
     """Drop inline Markdown markup (backticks, emphasis) for rendering."""
     return re.sub(r"[`*]", "", str(text)).strip()
+
+
+def slug(text: str, lang: str, n: int) -> str:
+    """Stable, readable image name derived from the table's title (accents folded)."""
+    folded = unicodedata.normalize("NFKD", clean(text)).encode("ascii", "ignore").decode()
+    s = re.sub(r"[^a-z0-9]+", "-", folded.lower()).strip("-")[:48].strip("-")
+    return f"table-{lang}-{s}" if s else f"table-{lang}-{n}"
 
 
 def _bold_cell(text) -> tuple[str, bool]:
@@ -157,12 +165,16 @@ def _title_before(lines: list[str], idx: int) -> str:
 
 
 def process(lang: str) -> None:
-    src = BLOG / f"medium-laya-{lang}.md"
-    dst = BLOG / f"medium-laya-{lang}.medium.md"
-    lines = src.read_text(encoding="utf-8").splitlines()
+    """Replace every Markdown table of the article with a rendered image.
+
+    The article itself is rewritten (tables -> image links), so ``medium-laya-<lang>.md``
+    is directly usable on GitHub *and* importable into Medium.
+    """
+    path = BLOG / f"medium-laya-{lang}.md"
+    lines = path.read_text(encoding="utf-8").splitlines()
 
     out: list[str] = []
-    i, made, skipped = 0, 0, 0
+    i, made, dropped = 0, 0, 0
     while i < len(lines):
         line = lines[i]
         if _is_row(line) and i + 1 < len(lines) and SEP.match(lines[i + 1].strip()):
@@ -174,31 +186,31 @@ def process(lang: str) -> None:
 
             prev = next((s.strip() for s in reversed(out) if s.strip()), "")
             if prev.startswith("!["):  # an image already shows this table
-                print(f"  [{lang}] dropped a table, an image sits above it: {header}")
-                skipped += 1
+                print(f"  [{lang}] dropped a table an image already shows: {header}")
+                dropped += 1
                 i = j
                 continue
 
-            title = _title_before(lines, i)
-            made += 1
-            name = f"table-{lang}-{made}.png"
+            title = _title_before(lines, i) or f"{lang} table {made + 1}"
+            name = f"{slug(title, lang, made + 1)}.png"
             render_table(ASSETS / name, title, header, rows)
-            out.append(f"![{title or f'{lang} table {made}'}]({RAW}/{name})")
+            out.append(f"![{title}]({RAW}/{name})")
             print(f"  [{lang}] {name}  <- {title!r}  ({len(rows)} rows)")
+            made += 1
             i = j
             continue
         out.append(line)
         i += 1
 
-    # collapse 3+ blank lines left behind by dropped tables
-    text = re.sub(r"\n{3,}", "\n\n", "\n".join(out)).rstrip("\n") + "\n"
-    dst.write_text(text, encoding="utf-8")
-    print(f"  [{lang}] wrote {dst.relative_to(ROOT)}  ({made} images, {skipped} tables dropped)")
+    if made or dropped:
+        path.write_text(re.sub(r"\n{3,}", "\n\n", "\n".join(out)).rstrip("\n") + "\n",
+                        encoding="utf-8")
+    print(f"  [{lang}] {path.name}: {made} table(s) -> image(s), {dropped} dropped")
 
 
 def main() -> int:
     ASSETS.mkdir(parents=True, exist_ok=True)
-    print("rendering article tables as images ...")
+    print("rendering article tables as images (in place) ...")
     for lang in ("en", "fr"):
         process(lang)
     return 0

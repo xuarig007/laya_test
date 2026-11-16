@@ -23,11 +23,7 @@ The reflex is to call a generative LLM: "answer in JSON: category, urgency, …"
 
 Three primitives are enough:
 
-| type | what it does |
-|---|---|
-| `choice` | pick one label out of N (with a description per option) |
-| `score` | place the state on an ordered scale |
-| `noul` | probability that the answer is *yes* |
+![Laya in three lines](https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/assets/table-en-laya-in-three-lines.png)
 
 It **never generates text**: nothing to parse, nothing to hallucinate. A built-in `Router` even picks the right checkpoint based on the detected language. And it all runs **locally**.
 
@@ -35,12 +31,7 @@ It **never generates text**: nothing to parse, nothing to hallucinate. A built-i
 
 Each ticket becomes **four typed decisions**, in one pass:
 
-| question | type | output | downstream use |
-|---|---|---|---|
-| `department` | `choice` | billing / technical / account | route to the right queue |
-| `urgency` | `score` | 0 / 1 / 2 | prioritisation, SLA |
-| `churn_risk` | `noul` | probability of "yes" | retention alert |
-| `refund_requested` | `noul` | probability of "yes" | refund policy |
+![My use case: a triage gateway](https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/assets/table-en-my-use-case-a-triage-gateway.png)
 
 I built a small evaluation harness (metrics identical to Laya's own: accuracy, MAE, ECE, Brier, AURC, *selective accuracy*) plus a labelled dataset — first **33 hand-written tickets**, then larger versions.
 
@@ -74,11 +65,7 @@ Tickets that explicitly threaten to leave are classified as "no churn", **with 9
 
 I split 23 tickets for training and kept 10 aside, then fine-tuned on CPU (encoder frozen first, then full).
 
-| run | choice | noul |
-|---|---|---|
-| before (base) | 0.800 | 0.800 |
-| fine-tune, **frozen encoder** | 0.900 | 0.800 |
-| fine-tune, **full** | 1.000 | 0.900 |
+![Step 2 — fine-tuning on 33 tickets? Not enough](https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/assets/table-en-step-2-fine-tuning-on-33-tickets-not-enough.png)
 
 `churn` stays stuck around **0.60**. The reason: only **3 positive churn examples** in training. The problem isn't the settings, it's **the data**.
 
@@ -96,14 +83,7 @@ Two settings change everything:
 
 Results on the 21 held-out tickets (84 decisions):
 
-| metric | base `multilingual` | after fine-tuning (100, GPU) |
-|---|---|---|
-| `choice_accuracy` | 0.714 | **0.905** |
-| `noul_accuracy` | 0.833 | **0.952** |
-| `score_mae ↓` | 0.823 | **0.333** |
-| `ece ↓` | 0.134 | **0.100** |
-| `aurc ↓` | 0.060 | **0.003** |
-| `selective_accuracy@80` | 0.882 | **1.000** |
+![Step 3 — 100 tickets + GPU: the breakthrough](https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/assets/table-en-step-3-100-tickets-gpu-the-breakthrough.png)
 
 And above all: **`churn_risk` 0.714 → 1.000**. The blind spot from step 1 is fixed — not by swapping models, but by **giving it data**.
 
@@ -119,21 +99,9 @@ If the test set is generated from the same templates as training, the model just
 
 ![Results on the held-out test](https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/assets/results-en.png)
 
-| run | choice | noul | score_mae | ECE | AURC | sel@80 |
-|---|---|---|---|---|---|---|
-| base `multilingual` | 0.653 | 0.753 | 0.672 | 0.222 | 0.149 | 0.750 |
-| **FT soft-ce (300)** | **0.933** | **1.000** | 0.098 | **0.067** | **0.004** | 0.989 |
-| FT rlcd (300) | 0.867 | 1.000 | **0.075** | 0.092 | 0.008 | 0.994 |
-| FT soft-ce (65 tickets) | 0.720 | 1.000 | 0.126 | 0.072 | 0.009 | 0.994 |
-
 Per question (soft-ce 300 vs base):
 
-| question | base | fine-tuned |
-|---|---|---|
-| `churn_risk` | 0.600 | **1.000** |
-| `department` | 0.653 | **0.933** |
-| `refund_requested` | 0.907 | **1.000** |
-| `urgency` (MAE) | 0.672 | **0.098** |
+![Step 4 — 300 tickets, and honest testing](https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/assets/table-en-step-4-300-tickets-and-honest-testing.png)
 
 What these numbers really say:
 

@@ -236,7 +236,7 @@ laya_test/
 │   ├── finetune.sh                   # fine-tune via the laya-train CLI (33 tickets)
 │   ├── train_laya.py                 # fine-tune via the Python API (GPU, calib_frac, loss)
 │   ├── make_onepager.py              # generates laya_onepager.pdf (reportlab, 1 page)
-│   ├── make_table_images.py          # renders the article tables as PNGs + writes the *.medium.md import variants
+│   ├── make_table_images.py          # rewrites the articles, replacing each Markdown table with a rendered PNG
 │   ├── serve_model.py                # small local server + UI (/predict /guide /models /onepager.pdf)
 │   ├── serve.sh                      # start / restart the test server (port 9999 by default)
 │   ├── tester.html                   # web page: without FT / with FT comparison, category guide

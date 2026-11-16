@@ -23,11 +23,7 @@ Le réflexe est d'appeler un LLM génératif : « réponds-moi en JSON : catégo
 
 Trois primitives suffisent :
 
-| type | ce que ça fait |
-|---|---|
-| `choice` | choisir une étiquette parmi N (avec une description par option) |
-| `score` | placer l'état sur une échelle ordonnée |
-| `noul` | probabilité que la réponse soit *oui* |
+![Laya en trois lignes](https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/assets/table-fr-laya-en-trois-lignes.png)
 
 Il **ne génère jamais de texte** : rien à parser, rien à halluciner. Un `Router` intégré choisit même le bon checkpoint selon la langue détectée. Et tout tourne **en local**.
 
@@ -35,12 +31,7 @@ Il **ne génère jamais de texte** : rien à parser, rien à halluciner. Un `Rou
 
 Chaque ticket devient **quatre décisions typées**, en un seul passage :
 
-| question | type | sortie | usage en aval |
-|---|---|---|---|
-| `department` | `choice` | billing / technical / account | router vers la bonne file |
-| `urgency` | `score` | 0 / 1 / 2 | priorisation, SLA |
-| `churn_risk` | `noul` | probabilité de « oui » | alerte rétention |
-| `refund_requested` | `noul` | probabilité de « oui » | politique de remboursement |
+![Mon cas d'usage : une passerelle de triage](https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/assets/table-fr-mon-cas-d-usage-une-passerelle-de-triage.png)
 
 J'ai construit un petit harness d'évaluation (métriques identiques à celles de Laya : justesse, MAE, ECE, Brier, AURC, *selective accuracy*) et un jeu de données étiqueté — d'abord **33 tickets écrits à la main**, puis des variantes plus grandes.
 
@@ -74,11 +65,7 @@ Les tickets qui menacent explicitement de partir sont classés « pas de churn �
 
 Je découpe 23 tickets pour l'entraînement, 10 tenus à l'écart, et j'affine sur CPU (encodeur gelé d'abord, puis complet).
 
-| run | choice | noul |
-|---|---|---|
-| avant (base) | 0.800 | 0.800 |
-| fine-tune **encodeur gelé** | 0.900 | 0.800 |
-| fine-tune **complet** | 1.000 | 0.900 |
+![Étape 2 — fine-tuner 33 tickets ? Pas suffisant](https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/assets/table-fr-etape-2-fine-tuner-33-tickets-pas-suffisant.png)
 
 `churn` reste bloqué autour de **0.60**. En cause : seulement **3 exemples positifs** de churn dans l'entraînement. Le problème n'est pas le réglage, c'est **la donnée**.
 
@@ -94,14 +81,7 @@ Deux réglages changent tout :
 
 Résultats sur les 21 tickets tenus à l'écart (84 décisions) :
 
-| métrique | base `multilingual` | après fine-tuning (100, GPU) |
-|---|---|---|
-| `choice_accuracy` | 0.714 | **0.905** |
-| `noul_accuracy` | 0.833 | **0.952** |
-| `score_mae ↓` | 0.823 | **0.333** |
-| `ece ↓` | 0.134 | **0.100** |
-| `aurc ↓` | 0.060 | **0.003** |
-| `selective_accuracy@80` | 0.882 | **1.000** |
+![Étape 3 — 100 tickets + GPU : le déclic](https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/assets/table-fr-etape-3-100-tickets-gpu-le-declic.png)
 
 Et surtout : **`churn_risk` 0.714 → 1.000**. L'angle mort de l'étape 1 est réparé — non pas en changeant de modèle, mais en **donnant des données**.
 
@@ -117,21 +97,9 @@ Si le jeu de test est généré par les mêmes templates que l'entraînement, le
 
 ![Résultats sur le test tenu à l'écart](https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/assets/results-fr.png)
 
-| run | choice | noul | score_mae | ECE | AURC | sel@80 |
-|---|---|---|---|---|---|---|
-| base `multilingual` | 0.653 | 0.753 | 0.672 | 0.222 | 0.149 | 0.750 |
-| **FT soft-ce (300)** | **0.933** | **1.000** | 0.098 | **0.067** | **0.004** | 0.989 |
-| FT rlcd (300) | 0.867 | 1.000 | **0.075** | 0.092 | 0.008 | 0.994 |
-| FT soft-ce (65 tickets) | 0.720 | 1.000 | 0.126 | 0.072 | 0.009 | 0.994 |
-
 Par question (soft-ce 300 vs base) :
 
-| question | base | fine-tuné |
-|---|---|---|
-| `churn_risk` | 0.600 | **1.000** |
-| `department` | 0.653 | **0.933** |
-| `refund_requested` | 0.907 | **1.000** |
-| `urgency` (MAE) | 0.672 | **0.098** |
+![Étape 4 — 300 tickets, et l'honnêteté du test](https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/assets/table-fr-etape-4-300-tickets-et-l-honnetete-du-test.png)
 
 Ce que ces chiffres disent vraiment :
 

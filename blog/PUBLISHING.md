@@ -116,11 +116,12 @@ n'apportent rien au lecteur et peuvent perturber l'importeur.
 
 ### URL d'import exacte (à copier en entier, sans coupure)
 
-Utiliser la **variante prête pour l'import** (voir § 9), pas le fichier source :
+Les tableaux sont **déjà des images** dans les articles (voir § 9) : on importe donc directement
+l'article, sans variante intermédiaire :
 
 ```
-EN : https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/medium-laya-en.medium.md
-FR : https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/medium-laya-fr.medium.md
+EN : https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/medium-laya-en.md
+FR : https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/medium-laya-fr.md
 ```
 
 > **Cache CDN de GitHub.** `raw.githubusercontent.com` sert les fichiers avec
@@ -154,36 +155,39 @@ FR : https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/medium-laya
 
 ---
 
-## 9. Variante prête pour l'import : `*.medium.md`
+## 9. Les tableaux sont des images (dans les articles eux-mêmes)
 
 Medium **n'affiche pas les tableaux Markdown** : ils s'aplatissent en texte illisible
 (`runchoicecnoulbefore (base)0.8000.800…`).
 
-`tools/make_table_images.py` lit les articles, **rend chaque tableau en image**
-(`blog/assets/table-<lang>-<n>.png`) puis écrit une variante **prête à importer** :
+Dans `blog/medium-laya-en.md` et `blog/medium-laya-fr.md`, **chaque tableau a été remplacé par une
+image** :
 
-| source (GitHub) | variante à importer sur Medium |
-|---|---|
-| `blog/medium-laya-en.md` | **`blog/medium-laya-en.medium.md`** |
-| `blog/medium-laya-fr.md` | **`blog/medium-laya-fr.medium.md`** |
+```markdown
+![Titre de la section](https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/assets/table-<langue>-<slug>.png)
+```
 
-- les tableaux y sont remplacés par des images en **URL absolues** → Medium les télécharge à l'import ;
-- un tableau qui **duplique une image déjà présente juste au-dessus** (`results-en.png`) est supprimé :
-  pas de doublon ;
-- le gras des cellules est rendu en gras, le balisage (`` ` `` et `**`) est nettoyé à l'affichage.
+Les liens sont en **URL absolues** : Medium les télécharge à l'import, et GitHub les affiche aussi.
+Onze images au total (5 tableaux par langue + le comparatif `results-*.png`).
 
-Régénérer après **toute** modification d'article :
+`tools/make_table_images.py` fait la conversion :
+
+1. détecte chaque tableau Markdown et la section au-dessus (qui devient le titre de l'image) ;
+2. le rend en `blog/assets/table-<langue>-<slug>.png` — titre inclus, **gras conservé**, balisage
+   (`` ` `` / `**`) nettoyé, texte long replié automatiquement ;
+3. **réécrit l'article** en remplaçant le bloc tableau par le lien de l'image ;
+4. supprime un tableau si une image (déjà présente juste au-dessus) le montre — pas de doublon.
+
+Le script est **idempotent** : relancé sur un article déjà converti, il ne fait rien.
 
 ```bash
-.venv/bin/python tools/make_table_images.py
+.venv/bin/python tools/make_table_images.py     # après avoir (re)mis un tableau dans un article
 ```
 
-### URL d'import à utiliser
+**Pour modifier un tableau** : remplacer la ligne `![...](...)` par le tableau Markdown voulu, puis
+relancer le script (le nom d'image est dérivé du titre de section, donc stable). Les mêmes tableaux
+restent par ailleurs en Markdown dans le `README.md` (§ 4, 8, 9, 10) et dans `results/*.json`.
 
-```
-EN : https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/medium-laya-en.medium.md
-FR : https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/medium-laya-fr.medium.md
-```
 
 
 
