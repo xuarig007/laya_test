@@ -133,7 +133,13 @@ Autrement dit : après fine-tuning, on peut **gater** sur la confiance et n'envo
 
 ## Bonus : une petite interface pour le voir de ses yeux
 
+![Le tester : sans fine-tuning vs avec fine-tuning](https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/assets/shot-fr.png)
+
 Plutôt que de croire des tableaux, je me suis fait une page web locale : on colle un ticket, on clique **Analyser**, et on obtient **les deux colonnes côte à côte** — « sans fine-tuning » vs « avec fine-tuning » — avec le détail des probabilités, la confiance, et un **badge « écart »** quand les deux modèles divergent. Un guide dépliable documente chaque catégorie (définition, domaine d'application, action en aval), accessible en infobulle au survol.
+
+L'interface est **multilingue** : le choix d'une langue (EN, FR, DE, ES, HI) bascule toute l'interface *et* le guide des catégories, et pré-remplit un ticket d'exemple dans cette langue — la même page, en allemand :
+
+![La même page en allemand](https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/assets/shot-de.png)
 
 C'est le meilleur moyen d'attraper les cas où le modèle de base est **confiant et faux** (l'angle mort `churn` de l'étape 1) — et de vérifier que le fine-tuning corrige bien *ce* cas-là.
 

@@ -81,8 +81,8 @@
 <body>
 <header>
   <div>
-    <h1>Triage de tickets — modèle Laya fine-tuné</h1>
-    <p id="status">chargement…</p>
+    <h1 id="h1">Laya tester</h1>
+    <p id="status">…</p>
   </div>
   <a class="onepager" href="/onepager.pdf" target="_blank" rel="noopener"
      title="Ouvrir le one-pager PDF (synthèse du projet)">ONE&nbsp;PAGER</a>
@@ -90,24 +90,24 @@
 <main>
   <div class="col">
     <section class="card" id="ticketCard">
-      <label for="state">Ticket (texte ou document JSON)</label>
+      <label for="state" id="ticketLabel">Ticket</label>
+      <div class="row" id="langs"></div>
       <div class="ticket-row">
-        <textarea id="state" rows="5">I was charged twice for my March subscription. Please refund the duplicate charge or I will cancel my account.</textarea>
-        <button id="go" class="primary">Analyser</button>
+        <textarea id="state" rows="5"></textarea>
+        <button id="go" class="primary">…</button>
       </div>
       <div class="row">
-        <span id="examples"></span>
-        <button id="guideBtn">Guide des catégories ▾</button>
+        <button id="guideBtn">…</button>
         <span id="lat" class="muted"></span>
       </div>
       <div id="guidePanel" style="display:none">
-        <div id="guideBody" class="muted">chargement…</div>
+        <div id="guideBody" class="muted"></div>
       </div>
     </section>
   </div>
   <div class="col">
     <section id="out">
-      <div class="card muted">Le résultat de l'analyse s'affichera ici.</div>
+      <div class="card muted" id="placeholder">…</div>
     </section>
   </div>
 </main>
@@ -120,26 +120,48 @@ const EXAMPLES = {
   es: "No puedo restablecer mi contraseña y el correo no llega. Sin prisa, cuando puedan.",
   hi: "मार्च की सदस्यता के लिए मुझसे दो बार शुल्क लिया गया। कृपया मुझे राशि वापस करें।"
 };
-const TITLE = { department:"Département", urgency:"Urgence", churn_risk:"Risque de départ",
-                refund_requested:"Demande de remboursement" };
-let GUIDE = {};
+let T = {};                    // UI strings of the current language
+let GUIDE = {};                // category guide of the current language
+let LANG = "en";
+let LAST = null;               // last /predict response, re-rendered on language change
+let MODELS = {};               // id -> {label, name}
+let guideOpen = false;
+
 const pct = (p) => (p == null ? "" : Math.round(p * 100) + "%");
 const bar = (p, green) =>
   `<div class="bar${green ? ' green' : ''}"><span style="width:${Math.round(p * 100)}%"></span></div>`;
 
-$("#examples").innerHTML = Object.keys(EXAMPLES)
+// --- language selector: switches the whole UI *and* fills a matching ticket ----
+$("#langs").innerHTML = Object.keys(EXAMPLES)
   .map(l => `<button data-lang="${l}">${l.toUpperCase()}</button>`).join("");
-$("#examples").addEventListener("click", e => {
+$("#langs").addEventListener("click", e => {
   const l = e.target.dataset.lang;
-  if (l) $("#state").value = EXAMPLES[l];
+  if (l) setLang(l, true);
 });
+
+async function setLang(lang, fillExample) {
+  LANG = lang;
+  try {
+    const d = await (await fetch(`/i18n?lang=${lang}`)).json();
+    T = d.ui || {}; GUIDE = d.guide || {};
+  } catch (e) { /* keep the previous strings */ }
+  document.documentElement.lang = lang;
+  $("#h1").textContent = T.header;
+  $("#ticketLabel").textContent = T.ticket_label;
+  $("#go").textContent = T.analyze;
+  guideBtn.textContent = guideOpen ? T.guide_open : T.guide_closed;
+  $("#status").textContent = MODELS.ft ? `${T.ft_col} · ${MODELS.ft.name}` : T.ready;
+  if (fillExample) $("#state").value = EXAMPLES[lang];
+  renderGuide();
+  if (LAST) render(LAST); else $("#out").innerHTML = `<div class="card muted">${T.placeholder}</div>`;
+}
 
 // guide access via a button inside the ticket card
 const guidePanel = $("#guidePanel"), guideBtn = $("#guideBtn");
 guideBtn.addEventListener("click", () => {
-  const hidden = guidePanel.style.display === "none";
-  guidePanel.style.display = hidden ? "block" : "none";
-  guideBtn.textContent = hidden ? "Guide des catégories ▴" : "Guide des catégories ▾";
+  guideOpen = !guideOpen;
+  guidePanel.style.display = guideOpen ? "block" : "none";
+  guideBtn.textContent = guideOpen ? T.guide_open : T.guide_closed;
 });
 
 function cardFor(qid, ans) {
@@ -162,15 +184,15 @@ function cardFor(qid, ans) {
     val = `${ans.score.toFixed(1)} <span class="muted">— ${tipHTML(lvl, cat)}</span>`;
   } else {
     const yes = ans.yes_prob >= 0.5;
-    cat = catOf(yes ? "oui" : "non");
-    val = `${tipHTML(yes ? "Oui" : "Non", cat)} <span class="muted">(${pct(ans.yes_prob)} de « oui »)</span>`;
+    cat = catOf(yes ? "yes" : "no");
+    val = `${tipHTML(yes ? T.yes : T.no, cat)} <span class="muted">(${pct(ans.yes_prob)} ${T.of_yes})</span>`;
     extra = bar(ans.yes_prob, true);
   }
   const def = cat
-    ? `<div class="qdef"><b>${cat.domain}</b> — ${cat.definition}<br><b>Action :</b> ${cat.action}</div>`
+    ? `<div class="qdef"><b>${cat.domain}</b> — ${cat.definition}<br><b>${T.guide_col_action} :</b> ${cat.action}</div>`
     : "";
   return `<div class="val">${val}</div>${extra}
-    <div class="muted" style="font-size:12px">confiance : ${pct(ans.confidence)}</div>${def}`;
+    <div class="muted" style="font-size:12px">${T.confidence} : ${pct(ans.confidence)}</div>${def}`;
 }
 
 // does the fine-tuned answer differ from the base one?
@@ -182,14 +204,17 @@ function isDiff(a, b) {
 
 // two columns (one per model), four stacked cards each (1x4 vs 1x4)
 function render(resp) {
+  LAST = resp;
   const { base, ft } = resp;
-  let html = `<div class="colhead">${MODEL_LABELS.base || "Sans fine-tuning"}</div>
-              <div class="colhead ft">${MODEL_LABELS.ft || "Avec fine-tuning"}</div>`;
+  const n = (m) => (MODELS[m] && MODELS[m].name ? ` · ${MODELS[m].name}` : "");
+  let html = `<div class="colhead">${T.base_col}${n("base")}</div>
+              <div class="colhead ft">${T.ft_col}${n("ft")}</div>`;
   for (const qid of Object.keys(ft)) {
     const diff = isDiff(base[qid], ft[qid]);
-    const badge = diff ? '<span class="badge diff">écart</span>'
-                       : '<span class="badge same">idem</span>';
-    html += `<div class="qhead">${TITLE[qid] || qid} <span class="muted">· ${qid}</span>${badge}</div>`;
+    const badge = diff ? `<span class="badge diff">${T.differs}</span>`
+                       : `<span class="badge same">${T.same}</span>`;
+    const title = (GUIDE[qid] && GUIDE[qid].title) || qid;
+    html += `<div class="qhead">${title} <span class="muted">· ${qid}</span>${badge}</div>`;
     html += `<div class="rcard">${cardFor(qid, base[qid])}</div>`;
     html += `<div class="rcard ft${diff ? " diff" : ""}">${cardFor(qid, ft[qid])}</div>`;
   }
@@ -200,25 +225,26 @@ function render(resp) {
 function tipHTML(text, cat) {
   if (!cat) return text;
   return `<span class="tip">${text}<span class="tipbox"><b>${cat.label}</b> — ${cat.definition}
-    <br><span style="opacity:.75">Domaine : ${cat.domain}</span><br><b>Action :</b> ${cat.action}</span></span>`;
+    <br><span style="opacity:.75">${T.guide_col_domain} : ${cat.domain}</span><br><b>${T.guide_col_action} :</b> ${cat.action}</span></span>`;
 }
 
 function renderGuide() {
   let html = "";
   for (const [qid, g] of Object.entries(GUIDE)) {
-    html += `<div class="gtitle">${g.title} <span class="muted">· ${qid} (${g.type})</span></div>
+    html += `<div class="gtitle">${g.title} <span class="muted">· ${qid}</span></div>
       <div class="gq">${g.question}</div>
       <table class="guide"><thead><tr>
-        <th style="width:90px">Catégorie</th><th>Définition</th>
-        <th>Domaine d'application</th><th>Action en aval</th>
+        <th style="width:95px">${T.guide_col_category}</th><th>${T.guide_col_definition}</th>
+        <th>${T.guide_col_domain}</th><th>${T.guide_col_action}</th>
       </tr></thead><tbody>`;
     for (const c of g.categories) {
-      html += `<tr><td><b>${c.label}</b></td><td>${c.definition}</td>
+      const label = c.label === "yes" ? T.yes : c.label === "no" ? T.no : c.label;
+      html += `<tr><td><b>${label}</b></td><td>${c.definition}</td>
         <td>${c.domain}</td><td>${c.action}</td></tr>`;
     }
     html += `</tbody></table>`;
   }
-  $("#guideBody").innerHTML = html || "(guide indisponible)";
+  $("#guideBody").innerHTML = html;
 }
 
 async function go() {
@@ -231,27 +257,21 @@ async function go() {
       body: JSON.stringify({ state })
     });
     const d = await r.json();
-    if (!d.ok) throw new Error(d.error || "erreur");
-    $("#lat").textContent = `sans FT ${d.latency_ms.base} ms · avec FT ${d.latency_ms.ft} ms`;
+    if (!d.ok) throw new Error(d.error || T.error);
+    $("#lat").textContent =
+      `${T.base_col} ${d.latency_ms.base} ms · ${T.ft_col} ${d.latency_ms.ft} ms`;
     render(d);
   } catch (e) {
-    $("#out").innerHTML = `<section class="card muted">Erreur : ${e.message}</section>`;
+    $("#out").innerHTML = `<div class="card muted">${T.error} : ${e.message}</div>`;
   } finally { $("#go").disabled = false; }
 }
 $("#go").addEventListener("click", go);
 $("#state").addEventListener("keydown", e => { if (e.ctrlKey && e.key === "Enter") go(); });
 
-fetch("/guide").then(r => r.json()).then(d => { GUIDE = d.guide || {}; renderGuide(); })
-  .catch(() => { $("#guideBody").textContent = "guide indisponible"; });
-
-// model labels for the two column headers
-let MODEL_LABELS = { base: "Sans fine-tuning", ft: "Avec fine-tuning" };
+// load the served models first, then the default interface language
 fetch("/models").then(r => r.json()).then(d => {
-  const m = {};
-  (d.models || []).forEach(x => { m[x.id] = x.label; });
-  if (Object.keys(m).length) MODEL_LABELS = m;
-  $("#status").textContent = "prêt";
-}).catch(() => {});
+  (d.models || []).forEach(x => { MODELS[x.id] = x; });
+}).catch(() => {}).finally(() => setLang("en", true));
 </script>
 </body>
 </html>

@@ -19,12 +19,14 @@ import argparse
 import json
 import sys
 import time
+import urllib.parse
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
+from layabench import i18n  # noqa: E402
 from layabench import schema  # noqa: E402
 
 QUESTIONS = schema.questions_for(noul_as_choice=False)
@@ -33,6 +35,13 @@ HTML_FILE = Path(__file__).resolve().parent / "tester.html"
 ONEPAGER = ROOT / "laya_onepager.pdf"
 MODELS: dict[str, dict] = {}  # model id -> {"agent": <Agent>, "label": <str>}
 DEFAULT_MODEL = "ft"
+
+
+def _lang_of(path: str) -> str:
+    """Read ``?lang=`` from a request path, falling back to the default."""
+    query = urllib.parse.urlparse(path).query
+    lang = urllib.parse.parse_qs(query).get("lang", [i18n.DEFAULT_LANGUAGE])[0]
+    return lang if lang in i18n.LANGUAGES else i18n.DEFAULT_LANGUAGE
 
 
 def newest_checkpoint() -> str | None:
@@ -91,10 +100,16 @@ class Handler(BaseHTTPRequestHandler):
             self._send(200, HTML_FILE.read_bytes(), "text/html; charset=utf-8")
         elif self.path == "/questions":
             self._json(200, {"questions": QUESTIONS})
-        elif self.path == "/guide":
-            self._json(200, {"guide": GUIDE})
+        elif self.path == "/guide" or self.path.startswith("/guide?"):
+            self._json(200, {"guide": i18n.GUIDE[_lang_of(self.path)]})
+        elif self.path == "/i18n" or self.path.startswith("/i18n?"):
+            lang = _lang_of(self.path)
+            self._json(200, {"lang": lang, "default": i18n.DEFAULT_LANGUAGE,
+                             "languages": list(i18n.LANGUAGES),
+                             "ui": i18n.UI[lang], "guide": i18n.GUIDE[lang]})
         elif self.path == "/models":
-            self._json(200, {"models": [{"id": k, "label": v["label"]} for k, v in MODELS.items()],
+            self._json(200, {"models": [{"id": k, "label": v["label"], "name": v.get("name")}
+                                        for k, v in MODELS.items()],
                              "default": DEFAULT_MODEL})
         elif self.path in ("/onepager.pdf", "/one-pager.pdf"):
             if not ONEPAGER.exists():
@@ -156,11 +171,13 @@ def main(argv: list[str] | None = None) -> int:
 
     print(f"loading base       {args.base_model}/{args.base_subfolder} (device={args.device}) ...")
     base = laya.load(args.base_model, subfolder=args.base_subfolder, device=args.device)
-    MODELS["base"] = {"agent": base, "label": f"Sans fine-tuning ({args.base_subfolder})"}
+    MODELS["base"] = {"agent": base, "name": args.base_subfolder,
+                      "label": f"Sans fine-tuning ({args.base_subfolder})"}
 
     print(f"loading fine-tuned {checkpoint} (device={args.device}) ...")
     ft = laya.load(checkpoint, device=args.device)
-    MODELS["ft"] = {"agent": ft, "label": f"Avec fine-tuning ({Path(checkpoint).name})"}
+    MODELS["ft"] = {"agent": ft, "name": Path(checkpoint).name,
+                    "label": f"Avec fine-tuning ({Path(checkpoint).name})"}
 
     # warmups so the first request is fast
     for entry in MODELS.values():

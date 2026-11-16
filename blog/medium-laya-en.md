@@ -135,7 +135,13 @@ In other words: after fine-tuning you can **gate** on confidence and only auto-r
 
 ## Bonus: a tiny UI to see it with your own eyes
 
+![The tester: without fine-tuning vs with fine-tuning](https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/assets/shot-en.png)
+
 Rather than trusting tables, I built myself a local web page: paste a ticket, hit **Analyze**, and you get **two columns side by side** — "without fine-tuning" vs "with fine-tuning" — with the full probability breakdown, the confidence, and a **"differs" badge** whenever the two models disagree. A collapsible guide documents every category (definition, domain of application, downstream action) and shows up as a hover tooltip.
+
+The interface is **multilingual**: picking a language (EN, FR, DE, ES, HI) switches the whole UI *and* the category guide, and loads a matching example ticket — the same page, in German:
+
+![The same page in German](https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/assets/shot-de.png)
 
 It's the best way to catch the cases where the base model is **confident and wrong** (the `churn` blind spot from step 1) — and to confirm that fine-tuning actually fixes *that* case.
 

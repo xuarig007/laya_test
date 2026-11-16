@@ -239,6 +239,7 @@ laya_test/
 │   ├── train_laya.py                 # fine-tune via l'API Python (GPU, calib_frac, loss)
 │   ├── make_onepager.py              # génère laya_onepager.pdf (reportlab, 1 page)
 │   ├── make_table_images.py          # réécrit les articles en remplaçant chaque tableau par un PNG
+│   ├── make_screenshots.py           # capture la page du tester (Chromium headless) dans chaque langue
 │   ├── serve_model.py                # petit serveur local + UI (endpoints /predict /guide /models /onepager.pdf)
 │   ├── serve.sh                      # démarre / redémarre le serveur de test (port 9999 par défaut)
 │   ├── tester.html                   # page web : comparaison sans FT / avec FT, guide des catégories
@@ -550,6 +551,33 @@ Le jeu de tickets multilingue (33 écrits à la main + variantes générées), l
 (`explicit` / `stratified` / `template`), le harness d'évaluation, le tester web local et le one-pager.
 Tous les chiffres sont mesurés sur le matériel décrit dans chaque section (CPU, et une RTX 4070 pour
 les runs GPU).
+
+---
+
+## 12. Captures d'écran — le tester web
+
+`tools/serve_model.py` + `tools/tester.html` servent une page locale qui exécute **les deux modèles**
+sur le même ticket et les affiche côte à côte, avec un badge *écart* quand ils divergent (ici : l'angle
+mort `churn`, `No 4% of "yes"` contre `Yes 95%`).
+
+![Le tester : sans fine-tuning vs avec fine-tuning](https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/assets/shot-fr.png)
+
+L'interface est **multilingue** : le choix d'une langue (EN, FR, DE, ES, HI) bascule toute l'interface
+*et* le guide des catégories, et pré-remplit un ticket d'exemple dans cette langue. La même page, en allemand :
+
+![La même page en allemand](https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/assets/shot-de.png)
+
+Le guide des catégories (définition, domaine d'application, action en aval pour chaque catégorie)
+s'ouvre depuis un bouton de la carte « Ticket » :
+
+![Le guide des catégories, en français](https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/assets/shot-guide-fr.png)
+
+Régénérer les captures (EN/FR/DE/ES/HI) :
+
+```bash
+.venv/bin/python tools/serve_model.py --device cuda --port 9999 &   # ou tools/serve.sh
+.venv/bin/python tools/make_screenshots.py
+```
 
 ---
 

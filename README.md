@@ -237,6 +237,7 @@ laya_test/
 │   ├── train_laya.py                 # fine-tune via the Python API (GPU, calib_frac, loss)
 │   ├── make_onepager.py              # generates laya_onepager.pdf (reportlab, 1 page)
 │   ├── make_table_images.py          # rewrites the articles, replacing each Markdown table with a rendered PNG
+│   ├── make_screenshots.py           # captures the tester page (headless Chromium) in every language
 │   ├── serve_model.py                # small local server + UI (/predict /guide /models /onepager.pdf)
 │   ├── serve.sh                      # start / restart the test server (port 9999 by default)
 │   ├── tester.html                   # web page: without FT / with FT comparison, category guide
@@ -539,6 +540,33 @@ The multilingual ticket dataset (33 hand-written tickets plus generated variants
 (`explicit` / `stratified` / `template`), the evaluation harness, the local web tester and the
 one-pager. All figures are measured on the hardware described in each section (CPU, and an RTX 4070
 for the GPU runs).
+
+---
+
+## 12. Screenshots — the web tester
+
+`tools/serve_model.py` + `tools/tester.html` serve a local page that runs **both** models on the same
+ticket and shows them side by side, with a *differs* badge whenever they disagree (here: the `churn`
+blind spot, `No 4% of "yes"` vs `Yes 95%`).
+
+![The tester: without fine-tuning vs with fine-tuning](https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/assets/shot-en.png)
+
+The interface is **multilingual**: picking a language (EN, FR, DE, ES, HI) switches the whole UI *and*
+the category guide, and loads a matching example ticket. The same ticket, in German:
+
+![The same page in German](https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/assets/shot-de.png)
+
+The category guide (definition, domain of application, downstream action for every category) opens
+from a button in the ticket card:
+
+![The category guide, in French](https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/assets/shot-guide-fr.png)
+
+Regenerate the shots (EN/FR/DE/ES/HI) with:
+
+```bash
+.venv/bin/python tools/serve_model.py --device cuda --port 9999 &   # or tools/serve.sh
+.venv/bin/python tools/make_screenshots.py
+```
 
 ---
 
