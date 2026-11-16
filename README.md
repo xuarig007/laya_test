@@ -239,6 +239,7 @@ laya_test/
 │   ├── tester.html                   # page web : comparaison sans FT / avec FT, guide des catégories
 │   └── routing_demo.py               # affiche les décisions du Router
 ├── checkpoints/                      # t300-softce conservé (le plus efficient) ; autres régénérables via tools/
+├── blog/                             # article Medium : medium-laya-fr.md + assets/ (couverture, tableau) + PUBLISHING.md
 ├── laya_onepager.pdf                 # one-pager de synthèse (présentation + résultats)
 └── results/                          # rapports générés (JSON + Markdown)
 ```
