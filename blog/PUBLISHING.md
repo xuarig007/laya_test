@@ -123,6 +123,17 @@ https://raw.githubusercontent.com/xuarig007/laya_test/main/blog/medium-laya-en.m
 Variante acceptée : `.../laya_test/refs/heads/main/blog/medium-laya-en.md`
 (FR : remplacer `medium-laya-en.md` par `medium-laya-fr.md`).
 
+> **Cache CDN de GitHub.** `raw.githubusercontent.com` sert les fichiers avec
+> `cache-control: max-age=300` : après un `git push`, l'URL raw peut renvoyer **l'ancienne version
+> pendant ~5 minutes** (un paramètre `?v=2` ne contourne pas ce cache). Si l'import lit une version
+> périmée, **attendre 5 minutes** et réessayer. Pour vérifier ce qui est réellement servi :
+> `curl -s <url> | grep png`. L'API GitHub renvoie, elle, toujours la version à jour
+> (`curl -H 'Accept: application/vnd.github.raw' https://api.github.com/repos/xuarig007/laya_test/contents/blog/medium-laya-en.md`).
+
+> **Tableaux.** Medium n'affiche pas les tableaux Markdown : à l'import ils apparaissent en texte
+> « | a | b | ». Garder le tableau-image `results-en.png` pour la comparaison clé, et supprimer (ou
+> transformer en liste) les petits tableaux restants dans l'éditeur.
+
 ### Si l'import échoue encore (l'importeur de Medium est capricieux)
 
 1. **Réessayer** — l'erreur « server stopped responding » est souvent transitoire (« Try again »).

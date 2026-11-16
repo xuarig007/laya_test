@@ -1,6 +1,6 @@
 # Laya, du zero-shot à la production : affiner un moteur de décision open source
 
-### Trier des tickets support en 5 langues, en un seul forward pass. De 33 à 300 exemples, du CPU au GPU — avec les chiffres, y compris ceux qui font mal.
+*Trier des tickets support en 5 langues, en un seul forward pass. De 33 à 300 exemples, du CPU au GPU — avec les chiffres, y compris ceux qui font mal.*
 
 > **TL;DR** — J'ai évalué puis affiné **Laya**, un moteur de décision non-autorégressif, sur un cas d'usage réel (triage de tickets support multilingue). En zero-shot il est prometteur mais rate de façon *confiante* un signal critique. Après fine-tuning sur 300 exemples : **choix de département 0.65 → 0.93**, **risque de départ 0.60 → 1.00**, **erreur absolue d'urgence 0.67 → 0.10**. Et le test utilise des formulations jamais vues à l'entraînement.
 

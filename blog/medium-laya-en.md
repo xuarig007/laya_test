@@ -1,6 +1,6 @@
 # Laya, from zero-shot to production: fine-tuning an open-source decision engine
 
-### Routing support tickets in 5 languages in a single forward pass. From 33 to 300 examples, CPU then GPU — with the numbers, including the ones that hurt.
+*Routing support tickets in 5 languages in a single forward pass. From 33 to 300 examples, CPU then GPU — with the numbers, including the ones that hurt.*
 
 > **TL;DR** — I benchmarked and then fine-tuned **Laya**, a non-autoregressive decision engine, on a real use case (multilingual support-ticket routing). Zero-shot it looks promising but misses a critical signal *with high confidence*. After fine-tuning on 300 examples: **department choice 0.65 → 0.93**, **churn risk 0.60 → 1.00**, **urgency MAE 0.67 → 0.10** — and the test set only contains phrasings never seen during training.
 
